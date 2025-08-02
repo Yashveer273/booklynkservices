@@ -109,7 +109,7 @@ export const FEATURED_PROJECTS = [
     id: 5,
     title: "CA Website Plan", 
     image: "/src/assets/CA_Web.png",
-    link:"https://chartered-accountant-website.vercel.app/"
+    link:"https://chartered.booklynkservices.com"
   },
 ];
 
