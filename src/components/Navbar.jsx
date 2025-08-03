@@ -59,6 +59,7 @@ const Navbar = () => {
             >
               Pricing Plan
           </Link>
+          
             <a
               href="/#services"
               className="text-white text-base font-semibold hover:text-purple-200 transition-all"
@@ -77,6 +78,12 @@ const Navbar = () => {
             >
               Testimonials
             </a>
+             <Link
+            to="/dashboard-page"
+              className="text-white text-base font-semibold hover:text-purple-200 transition-all"
+            >
+              Dashboard
+          </Link>
           </div>
         </div>
 
@@ -130,6 +137,12 @@ const Navbar = () => {
           >
             Testimonials
           </a>
+           <Link
+            to="/dashboard-page"
+              className="text-white text-base font-semibold hover:text-purple-200 transition-all"
+            >
+              Dashboard
+          </Link>
         </div>
       )}
     </nav>
