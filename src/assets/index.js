@@ -4,6 +4,7 @@ import socialMedia from "./socialMedia.png"
 import featureImg1 from "./featureImg1.png";
 import featureImg2 from "./featureImg2.png";
 import featureImg3 from "./featureImg4.png";
+import featureImg6 from "./featureImg3.png";
 import featureImg4 from "./featureImg5.png";
 import clientImg from "./client_img.png";  
 import footerImg from "./footerbgImg.png";
@@ -24,6 +25,6 @@ export{
     clientImg,
     footerImg,
     caweb,
-   
+   featureImg6,
     logo
 };
