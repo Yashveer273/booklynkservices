@@ -26,7 +26,7 @@ export const SERVICES = [
       'Ongoing monitoring and support',
       'Sustainable & eye catching UI/UX development  I',
     ],
-    image: "/src/assets/web.png",
+    image: featureImg2,
   },
   
    {
