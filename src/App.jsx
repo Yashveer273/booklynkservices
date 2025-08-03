@@ -11,6 +11,7 @@ import {
   HomeButton,
   Contact
 } from "./components";
+
 import PricingPlan from "./components/PricingPlan"; // <-- Make sure this is imported
 import Dashboard from "./components/Dashboard"; // <-- Make sure this is imported
 import './index.css';
@@ -36,19 +37,14 @@ function App() {
               <HomeButton />
             </>
           } />
-           <Route path="/pricing" element={
+           <Route path="/pricing-plan" element={
             <>
                <Navbar />
              <PricingPlan />
             </>
           } />
         
-          <Route path="/#connect" element={<Contact />} />
-          
-          <Route path="/#about" element={<About />} />
-          <Route path="/#services" element={<Services />} />
-          <Route path="/#features" element={<Features />} />
-          <Route path="/#feedback" element={<FeedbackSection />} />
+         
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>

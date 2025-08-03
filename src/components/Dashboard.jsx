@@ -208,7 +208,7 @@ const AuthContent = () => {
   return currentUser ? <Dashboard /> : <AuthComponent />;
 };
 
-const App = () => {
+const Deshboard = () => {
   return (
     <AuthProvider>
       <div className="bg-gray-900 min-h-screen text-gray-100 font-sans">
@@ -1018,4 +1018,4 @@ const AuthComponent = () => {
   );
 };
 
-export default App;
+export default Deshboard;

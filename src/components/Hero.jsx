@@ -40,7 +40,7 @@ const Hero = () => (
           Explore Our Work
         </button> */}
         <a
-          href="#services"
+          href="/#services"
           className="border border-cyan-400 text-white font-medium px-8 py-4 rounded-[24px] shadow-sm hover:bg-gradient-to-br from-cyan-500 to-indigo-500 transition"
         >
           Explore Our Work

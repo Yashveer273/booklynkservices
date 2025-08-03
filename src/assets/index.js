@@ -7,6 +7,9 @@ import featureImg3 from "./featureImg4.png";
 import featureImg4 from "./featureImg5.png";
 import clientImg from "./client_img.png";  
 import footerImg from "./footerbgImg.png";
+import caweb from "./caweb.png";
+import web from "./web.png";
+import logo from "./logo.png";
 
 
 
@@ -20,4 +23,5 @@ export{
     featureImg4,
     clientImg,
     footerImg,
+    caweb,web,logo
 };

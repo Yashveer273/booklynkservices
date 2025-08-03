@@ -24,7 +24,7 @@ const socialIcons = [
     link: "https://www.facebook.com/profile.php?id=61574782382680",
   },{
     icon: <FaYoutube />,
-    link: "https://www.linkedin.com/company/booklynkservices/",
+    link: "https://www.youtube.com/@BooklynkServices",
   },
   {
     icon: <FaTwitter />,

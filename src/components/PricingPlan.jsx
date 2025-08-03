@@ -184,7 +184,7 @@ const CTASection = () => (
         Whether you’re just starting out or ready to scale, our monthly growth
         package gives you everything you need to succeed online.
       </p>
-      <a href="#pricing" className="cta-button">
+      <a href="" className="cta-button">
         Get Started Today!
       </a>
     </div>

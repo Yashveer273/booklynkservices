@@ -9,7 +9,7 @@ import {
     featureImg4,
     clientImg,
     footerImg,
-    
+    caweb,web
     
 } from "../assets";
 
@@ -25,7 +25,7 @@ export const SERVICES = [
       'Ongoing monitoring and support',
       'Sustainable & eye catching UI/UX development  I',
     ],
-    image: "/src/assets/web.png",
+    image: web,
   },
   
    {
@@ -108,7 +108,7 @@ export const FEATURED_PROJECTS = [
    {
     id: 5,
     title: "CA Website Plan", 
-    image: "/src/assets/CA_Web.png",
+    image: caweb,
     link:"https://chartered.booklynkservices.com"
   },
 ];
@@ -140,6 +140,30 @@ export const Feedback = [
     client_designation: 'Entrepreneur',
   },
   {
+    stars: 4,
+    feedback:
+      "Very professional and results-driven. They helped optimize my online presence drastically.",
+    client_image: clientImg,
+    client_name: 'Sahil Verma',
+    client_designation: 'Startup Founder',
+  },
+    {
+    stars: 5,
+    feedback:
+      "Couldn’t be happier with the service! Quick, efficient, and personalized.",
+    client_image: clientImg,
+    client_name: 'Neha Joshi',
+    client_designation: 'Fitness Coach',
+  },
+  {
+    stars: 4,
+    feedback:
+      "Great experience overall. Support team was responsive and understood our needs perfectly.",
+    client_image: clientImg,
+    client_name: 'Varun Kapoor',
+    client_designation: 'App Developer',
+  },
+   {
     stars: 5,
     feedback:
       "Simply put, they’re the best in the business! Their tailored approach and exceptional service made all the difference for my practice.",
@@ -150,18 +174,10 @@ export const Feedback = [
   {
     stars: 5,
     feedback:
-      "Simply put, they’re the best in the business! Their tailored approach and exceptional service made all the difference for my practice.",
+      "Incredible team and amazing support! I’ve seen real growth since working with them.",
     client_image: clientImg,
-    client_name: 'Aman Singh',
-    client_designation: 'YouTuber',
-  },
-  {
-    stars: 5,
-    feedback:
-      "Simply put, they’re the best in the business! Their tailored approach and exceptional service made all the difference for my practice.",
-    client_image: clientImg,
-    client_name: 'Aman Singh',
-    client_designation: 'YouTuber',
+    client_name: 'Riya Mehra',
+    client_designation: 'Digital Marketer',
   },
 ];
 
