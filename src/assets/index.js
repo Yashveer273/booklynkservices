@@ -23,5 +23,7 @@ export{
     featureImg4,
     clientImg,
     footerImg,
-    caweb,web,logo
+    caweb,
+    web,
+    logo
 };
