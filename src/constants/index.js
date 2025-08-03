@@ -9,7 +9,8 @@ import {
     featureImg4,
     clientImg,
     footerImg,
-    caweb,web
+    caweb,
+    
     
 } from "../assets";
 
@@ -25,7 +26,7 @@ export const SERVICES = [
       'Ongoing monitoring and support',
       'Sustainable & eye catching UI/UX development  I',
     ],
-    image: web,
+    image: "/src/assets/web.png",
   },
   
    {
