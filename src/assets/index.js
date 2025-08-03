@@ -25,6 +25,6 @@ export{
     clientImg,
     footerImg,
     caweb,
-   featureImg6,
+    featureImg6,
     logo
 };
