@@ -41,7 +41,7 @@ export const SERVICES = [
       'Smooth animation amnimated user friendly UI/UX experience',
       'We impliment philosophical aspect in development for our end users heppiness '
     ],
-    image: "/src/assets/mobile.jpg",
+    image: featureImg3,
   },
   {
     id: '03',

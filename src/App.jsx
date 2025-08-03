@@ -45,7 +45,7 @@ function App() {
           } />
         
          
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard-page" element={<Dashboard/>} />
         </Routes>
       </div>
     </BrowserRouter>
