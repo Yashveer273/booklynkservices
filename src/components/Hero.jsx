@@ -14,8 +14,8 @@ const Hero = () => (
     />
 
     {/* Content */}
-    <div className="relative z-20 text-white mt-30">
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-wider">
+    <div className="relative z-20 text-white">
+      <h1 className="text-3xl md:text-3xl lg:text-6xl font-bold leading-tight mb-6 tracking-wider">
         We don’t just build<br /> websites, apps, & campaigns<br />
         we build your business
       </h1>
