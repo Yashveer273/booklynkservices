@@ -15,17 +15,16 @@ const Hero = () => (
 
     {/* Content */}
     <div className="relative z-20 text-white">
-      <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-wider">
-        We provide solutions
-        <br />
-        for your business!
+      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-wider">
+        We don’t just build<br /> websites, apps, & campaigns<br />
+        we build your business
       </h1>
       <p className="text-lg md:text-xl text-white max-w-2xl mx-auto mb-10 font-semibold tracking-wide bg-black/40 rounded-[8px] p-5">
         At Book Lynk Services Pvt Ltd, we are passionate about turning visionary
-        ideas into powerful digital realities. As a dynamic IT Solutions and
-        PR company, we empower businesses to thrive in today’s fast-paced
-        digital ecosystem. With a team of creative minds and technical experts,
-        we specialize in a wide range of services including
+        ideas into powerful digital realities. As a dynamic IT Solutions and PR
+        company, we empower businesses to thrive in today’s fast-paced digital
+        ecosystem. With a team of creative minds and technical experts, we
+        specialize in a wide range of services including
       </p>
       <div className="flex flex-wrap justify-center items-center gap-6">
         <div className="hidden md:flex">
