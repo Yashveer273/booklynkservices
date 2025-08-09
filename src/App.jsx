@@ -5,7 +5,7 @@ import {
   About,
   Services,
   Connect,
-  Features,
+  Featured,
   FeedbackSection,
   Footer,
   HomeButton,
@@ -28,7 +28,7 @@ function App() {
               <Hero />
               <About />
               <Services />
-              <Features />
+              <Featured />
               <Connect />
               <Contact />
               <FeedbackSection />

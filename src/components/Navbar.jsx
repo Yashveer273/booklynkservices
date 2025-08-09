@@ -67,7 +67,7 @@ const Navbar = () => {
               Services
             </a>
             <a
-              href="/#features"
+              href="/#portfolio"
               className="text-white text-base font-semibold hover:text-purple-200 transition-all"
             >
               Portfolio
@@ -126,7 +126,7 @@ const Navbar = () => {
             Services
           </a>
           <a
-            href="/#features"
+            href="/#portfolio"
             className="text-white text-base font-semibold hover:text-purple-200 transition-all"
           >
             Portfolio

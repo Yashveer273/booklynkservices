@@ -3,7 +3,7 @@ import Hero from "./Hero.jsx";
 import About from "./About.jsx";
 import Services from "./Services.jsx";
 import Connect from "./Connect.jsx";
-import Features from "./Features.jsx";
+import Featured from "./Featured.jsx";
 import FeedbackSection from "./Feedback.jsx";
 import Footer from "./Footer.jsx";
 import HomeButton from "./HomeButton.jsx";
@@ -16,7 +16,7 @@ export {
     About,
     Services,
     Connect,
-    Features,
+    Featured,
     FeedbackSection,
     Footer,
     HomeButton,

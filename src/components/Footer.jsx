@@ -15,10 +15,12 @@ const socialIcons = [
   {
     icon: <FaLinkedin />,
     link: "https://www.linkedin.com/company/booklynkservices/",
-  }, {
+  },
+  {
     icon: <FaFacebookF />,
     link: "https://www.facebook.com/profile.php?id=61574782382680",
-  },{
+  },
+  {
     icon: <FaYoutube />,
     link: "https://www.youtube.com/@BooklynkServices",
   },
@@ -40,12 +42,21 @@ const Footer = () => {
           Ready to Enhance Your Brand & Idea?
         </h2>
 
-        <div className="inline-block bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full mb-8">
-          <p className="text-purple-200 text-sm sm:text-base">
-            booklynkservices@gmail.com
-          </p>
-        </div>
+       <div className="flex flex-col items-center">
+  <div className="w-fit max-w-full bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full mb-8">
+    <p className="text-purple-200 text-sm sm:text-base text-center">
+      booklynkservices@gmail.com
+    </p>
+  </div>
 
+  <div className="w-fit max-w-full bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full mb-8">
+    <p className="text-purple-200 text-sm sm:text-base text-center">
+      +91 9650316607
+    </p>
+  </div>
+</div>
+
+        
         <div className="flex justify-center items-center gap-5 sm:gap-6 mt-4 flex-wrap">
           {socialIcons.map((item, i) => (
             <a

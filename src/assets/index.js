@@ -9,6 +9,7 @@ import featureImg4 from "./featureImg5.png";
 import clientImg from "./client_img.png";  
 import footerImg from "./footerbgImg.png";
 import caweb from "./caweb.png";
+import clinic from "./clinicWeb.png";
 
 import logo from "./logo.png";
 
@@ -26,5 +27,6 @@ export{
     footerImg,
     caweb,
     featureImg6,
-    logo
+    logo,
+    clinic
 };

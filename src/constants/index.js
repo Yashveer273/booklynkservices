@@ -11,7 +11,7 @@ import {
     clientImg,
     footerImg,
     caweb,
-    
+    clinic
     
 } from "../assets";
 
@@ -112,6 +112,12 @@ export const FEATURED_PROJECTS = [
     title: "CA Website Plan", 
     image: caweb,
     link:"https://chartered.booklynkservices.com"
+  },
+    {
+    id: 6,
+    title: "Clinic Website", 
+    image: clinic,
+    link:"https://clinic.booklynkservices.com"
   },
 ];
 
