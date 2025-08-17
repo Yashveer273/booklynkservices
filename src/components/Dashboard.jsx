@@ -15,6 +15,10 @@ import {
 
 import { formatRelative, isToday, isThisWeek, isThisMonth } from "date-fns";
 import { firestore } from "./firebasecon";
+
+import TaxiTicketDashboard from "./taxiTicket";
+import TexicarForm from "./TexicarForm";
+import TaxiBookingTable from "./tex";
 // Admin credentials from a variable (fixed as per requirement)
 const fetchAdminCredentials = async () => {
   try {
@@ -619,6 +623,12 @@ const Dashboard = () => {
               Tickets
             </button>
             <button
+              onClick={() => setActiveTab('Taxi')}
+              className={`px-4 py-2 rounded-t-lg font-medium ${activeTab === 'Taxi' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+            >
+              Taxi
+            </button>
+            <button
               onClick={() => setActiveTab('sub-admins')}
               className={`px-4 py-2 rounded-t-lg font-medium ${activeTab === 'sub-admins' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
             >
@@ -751,12 +761,21 @@ const Dashboard = () => {
                   ))}
                 </tbody>
               </table>
+              
             </div>
           ) : (
             <p className="text-gray-400 text-center text-xl py-10">
               No tickets found. Add some data to your Firestore!
             </p>
           )}
+           <TaxiTicketDashboard/>
+        </>
+      )}
+{activeTab === 'Taxi' && (
+        <>
+    <TexicarForm/>
+        <TaxiBookingTable/>
+          
         </>
       )}
 
@@ -959,6 +978,7 @@ const TicketDetailModal = ({ ticket, onClose, onUpdateStatus }) => {
           </button>
         </div>
       </div>
+     
     </div>
   );
 };
