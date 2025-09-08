@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ---------------- Brand Colors ---------------- */
+:root {
+  --color-navy: #0b1f3f;
+  --color-orange: #ff4500; /* updated to OrangeRed */
+  --color-orange-hover: #e03e00; /* darker hover shade */
+  --color-teal: #20c997;
+  --color-lightgray: #f8f9fa;
+
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  --font-mono: var(--font-geist-mono, monospace);
+}
+
+/* ---------------- Dark theme ---------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ---------------- Body ---------------- */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* ---------------- Containers ---------------- */
+.container {
+  @apply px-4 sm:px-6 md:px-12 lg:px-20;
+}
+
+/* ---------------- Typography ---------------- */
+h1 {
+  @apply text-3xl sm:text-4xl md:text-5xl font-bold leading-tight;
+}
+
+h2 {
+  @apply text-2xl sm:text-3xl md:text-4xl font-semibold;
+}
+
+h3 {
+  @apply text-xl sm:text-2xl md:text-3xl font-semibold;
+}
+
+p {
+  @apply text-base sm:text-lg leading-relaxed;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  @apply inline-block px-6 py-3 rounded-lg font-semibold text-white bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] transition w-full sm:w-auto;
+}
+
+/* ---------------- Forms ---------------- */
+input, textarea, select {
+  @apply w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[var(--color-orange)] focus:outline-none;
+}
+
+/* ---------------- Navbar ---------------- */
+.navbar {
+  @apply flex justify-between items-center py-4;
+}
+
+.nav-links {
+  @apply hidden md:flex space-x-6;
+}
+
+.nav-mobile {
+  @apply md:hidden;
+}
+
+/* ---------------- Footer ---------------- */
+.footer {
+  @apply flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0 py-6;
+}
+
+/* ---------------- Animations ---------------- */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 2.5s ease-in-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 2.5s ease-in-out forwards;
+}
+
+/* ---------------- Floating card animations ---------------- */
+@keyframes cardSlideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes cardSlideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-cardSlideInLeft {
+  animation: cardSlideInLeft 2.5s ease-in-out forwards;
+}
+
+.animate-cardSlideInRight {
+  animation: cardSlideInRight 2.5s ease-in-out forwards;
+}
