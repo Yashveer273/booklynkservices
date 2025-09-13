@@ -241,7 +241,7 @@ export default function About() {
               Ready to Transform Your Business?
             </h2>
             <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8">
-              Let&#39;s work together to elevate your brand and achieve your
+              Lets work together to elevate your brand and achieve your
               business goals through our comprehensive IT and PR solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
