@@ -84,8 +84,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Mission Section */}
-      {/* Mission Section - Full width */}
+      
       <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
@@ -242,7 +241,7 @@ export default function About() {
               Ready to Transform Your Business?
             </h2>
             <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8">
-              Let's work together to elevate your brand and achieve your
+              Let&#39;s work together to elevate your brand and achieve your
               business goals through our comprehensive IT and PR solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
