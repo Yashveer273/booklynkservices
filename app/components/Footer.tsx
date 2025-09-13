@@ -133,33 +133,7 @@ export default function Footer() {
                 </div>
               ) : (
                 <div className="flex flex-col">
-                  <div className="flex">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (emailError) setEmailError("");
-                      }}
-                      placeholder="Enter Email Address"
-                      className={`flex-1 px-4 py-2 border rounded-l-lg focus:outline-none transition-colors ${
-                        emailError
-                          ? "border-red-300 focus:border-red-500"
-                          : "border-gray-300 focus:border-[var(--color-orange)]"
-                      }`}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          handleSubscribe(e);
-                        }
-                      }}
-                    />
-                    <button
-                      onClick={handleSubscribe}
-                      className="bg-[var(--color-orange)] text-white px-6 py-2 rounded-r-lg hover:bg-[var(--color-orange-hover)] transition-colors"
-                    >
-                      Subscribe
-                    </button>
-                  </div>
+                  
                   {emailError && (
                     <p className="text-red-500 text-sm mt-2">{emailError}</p>
                   )}
