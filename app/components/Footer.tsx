@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-  Twitter,
-} from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
 import Link from "next/link";
 import { footer } from "framer-motion/client";
 
@@ -119,9 +113,8 @@ export default function Footer() {
                 Be the first to know
               </h5>
               <p className="text-gray-500 text-sm mb-4">
-  We&#39;ll send you only what matters — no noise, no spam.
-</p>
-
+                We&#39;ll send you only what matters — no noise, no spam.
+              </p>
 
               {isSubscribed ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
@@ -134,7 +127,6 @@ export default function Footer() {
                 </div>
               ) : (
                 <div className="flex flex-col">
-                  
                   {emailError && (
                     <p className="text-red-500 text-sm mt-2">{emailError}</p>
                   )}
@@ -148,11 +140,21 @@ export default function Footer() {
                 Navigation
               </h4>
               <ul className="space-y-3">
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/services">Services</Link></li>
-                <li><Link href="/portfolio">Portfolio</Link></li>
-                <li><Link href="/pricing">Pricing</Link></li>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <Link href="/about">About Us</Link>
+                </li>
+                <li>
+                  <Link href="/services">Services</Link>
+                </li>
+                <li>
+                  <Link href="/portfolio">Portfolio</Link>
+                </li>
+                <li>
+                  <Link href="/pricing">Pricing</Link>
+                </li>
               </ul>
             </div>
 
@@ -162,10 +164,18 @@ export default function Footer() {
                 Information
               </h4>
               <ul className="space-y-3">
-                <li><Link href="/privacy">Privacy Policy</Link></li>
-                <li><Link href="/terms">Terms of Service</Link></li>
-                <li><Link href="/refund">Refund Policy</Link></li>
-                <li><Link href="/faq">FAQ</Link></li>
+                <li>
+                  <Link href="/privacy">Privacy Policy</Link>
+                </li>
+                <li>
+                  <Link href="/terms">Terms of Service</Link>
+                </li>
+                <li>
+                  <Link href="/refund">Refund Policy</Link>
+                </li>
+                <li>
+                  <Link href="/faq">FAQ</Link>
+                </li>
               </ul>
             </div>
 
@@ -201,4 +211,3 @@ export default function Footer() {
     </footer>
   );
 }
-
