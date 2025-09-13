@@ -119,8 +119,9 @@ export default function Footer() {
                 Be the first to know
               </h5>
               <p className="text-gray-500 text-sm mb-4">
-                We'll send you only what matters — no noise, no spam.
-              </p>
+  We&#39;ll send you only what matters — no noise, no spam.
+</p>
+
 
               {isSubscribed ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
@@ -128,7 +129,7 @@ export default function Footer() {
                     Thank you for subscribing! 🎉
                   </p>
                   <p className="text-green-600 text-sm mt-1">
-                    You'll receive our latest updates and insights.
+                    You&#39;ll receive our latest updates and insights.
                   </p>
                 </div>
               ) : (

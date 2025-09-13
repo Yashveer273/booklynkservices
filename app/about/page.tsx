@@ -1,39 +1,45 @@
 // app/about/page.tsx
 "use client";
-import Footer from "../components/Footer"; 
+import Footer from "../components/Footer";
 
+import Image from "next/image";
 
-import { Facebook, Instagram, Linkedin, Youtube, Twitter, } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function About() {
   const reasons = [
     {
-      title: 'Expert Team',
-      description: 'Our team consists of industry experts with years of experience in their respective fields.',
+      title: "Expert Team",
+      description:
+        "Our team consists of industry experts with years of experience in their respective fields.",
     },
     {
-      title: 'Proven Results',
-      description: 'We have a track record of delivering successful projects that exceed client expectations.',
+      title: "Proven Results",
+      description:
+        "We have a track record of delivering successful projects that exceed client expectations.",
     },
     {
-      title: 'Customer-Centric',
-      description: 'We put our clients first and tailor our solutions to meet their specific needs.',
+      title: "Customer-Centric",
+      description:
+        "We put our clients first and tailor our solutions to meet their specific needs.",
     },
     {
-      title: 'Innovation Focus',
-      description: 'We stay ahead of the curve by adopting the latest technologies and methodologies.',
+      title: "Innovation Focus",
+      description:
+        "We stay ahead of the curve by adopting the latest technologies and methodologies.",
     },
     {
-      title: '24/7 Support',
-      description: 'Our dedicated support team is available round the clock to assist you.',
+      title: "24/7 Support",
+      description:
+        "Our dedicated support team is available round the clock to assist you.",
     },
     {
-      title: 'Transparent Pricing',
-      description: 'No hidden fees or surprises. We believe in honest and transparent pricing.',
+      title: "Transparent Pricing",
+      description:
+        "No hidden fees or surprises. We believe in honest and transparent pricing.",
     },
-  ]
+  ];
 
   return (
     <div className="bg-[var(--color-lightgray)]">
@@ -52,8 +58,10 @@ export default function About() {
 
           {/* Main Heading */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 text-black leading-tight">
-            We deliver tailored strategies, seamless technology, 
-            <span className="hidden sm:inline"><br /></span>
+            We deliver tailored strategies, seamless technology,
+            <span className="hidden sm:inline">
+              <br />
+            </span>
             <span className="sm:hidden"> </span>
             and proven results to help your business grow.
           </h1>
@@ -81,7 +89,6 @@ export default function About() {
       <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
-            
             {/* Left side text */}
             <motion.div
               whileInView={{ opacity: [0, 1], x: [-50, 0] }}
@@ -97,9 +104,10 @@ export default function About() {
                   Elevate Your Online Presence with Us
                 </h3>
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  At Book Lynk Services, we help individuals and businesses build powerful digital identities.
-                  As a leading IT and media-tech company, we combine innovative technology with strategic storytelling
-                  to boost visibility, trust, and growth.
+                  At Book Lynk Services, we help individuals and businesses
+                  build powerful digital identities. As a leading IT and
+                  media-tech company, we combine innovative technology with
+                  strategic storytelling to boost visibility, trust, and growth.
                 </p>
               </div>
             </motion.div>
@@ -111,7 +119,9 @@ export default function About() {
               viewport={{ once: true }}
               className="lg:w-1/2 flex justify-center lg:justify-end lg:pr-8 xl:pr-20 mt-6 lg:mt-0"
             >
-              <img
+              <Image
+                width={600}
+                height={600}
                 src="/our mission.jpg"
                 alt="Our Mission"
                 className="w-full max-w-sm sm:max-w-md lg:max-w-lg rounded-2xl shadow-2xl object-cover"
@@ -131,35 +141,49 @@ export default function About() {
               viewport={{ once: true }}
               className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg"
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[var(--color-navy)]">Our Vision</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[var(--color-navy)]">
+                Our Vision
+              </h3>
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                To be the leading partner for businesses by driving growth through impactful PR, innovative IT solutions, and complete digital transformation.
+                To be the leading partner for businesses by driving growth
+                through impactful PR, innovative IT solutions, and complete
+                digital transformation.
               </p>
             </motion.div>
-            
+
             <motion.div
               whileInView={{ opacity: [0, 1], y: [30, 0] }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
               className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg"
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[var(--color-navy)]">Our Values</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[var(--color-navy)]">
+                Our Values
+              </h3>
               <ul className="space-y-3 sm:space-y-4 text-gray-700">
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-[var(--color-orange)] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base">Excellence in PR & IT solutions</span>
+                  <span className="text-sm sm:text-base">
+                    Excellence in PR & IT solutions
+                  </span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-[var(--color-teal)] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base">Integrity and transparency</span>
+                  <span className="text-sm sm:text-base">
+                    Integrity and transparency
+                  </span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base">Innovation and adaptability</span>
+                  <span className="text-sm sm:text-base">
+                    Innovation and adaptability
+                  </span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base">Client growth is our success</span>
+                  <span className="text-sm sm:text-base">
+                    Client growth is our success
+                  </span>
                 </li>
               </ul>
             </motion.div>
@@ -180,10 +204,11 @@ export default function About() {
               Why Choose Book Lynk Services Pvt Ltd?
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-              We stand out from the competition through our commitment to excellence, innovative approach, and dedication to client success.
+              We stand out from the competition through our commitment to
+              excellence, innovative approach, and dedication to client success.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {reasons.map((reason, index) => (
               <motion.div
@@ -193,8 +218,12 @@ export default function About() {
                 viewport={{ once: true }}
                 className="bg-white p-5 sm:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--color-navy)] mb-3 sm:mb-4">{reason.title}</h3>
-                <p className="text-gray-600 text-sm sm:text-base">{reason.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--color-navy)] mb-3 sm:mb-4">
+                  {reason.title.replace(/'/g, "&apos;")}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  {reason.description.replace(/'/g, "&apos;")}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -213,7 +242,8 @@ export default function About() {
               Ready to Transform Your Business?
             </h2>
             <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8">
-              Let's work together to elevate your brand and achieve your business goals through our comprehensive IT and PR solutions.
+              Let's work together to elevate your brand and achieve your
+              business goals through our comprehensive IT and PR solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
@@ -233,9 +263,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Footer Section */}
-     
- <Footer />
+      <Footer />
     </div>
-  )
+  );
 }
