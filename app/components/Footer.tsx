@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
 import Link from "next/link";
-import { footer } from "framer-motion/client";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
