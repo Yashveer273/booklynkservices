@@ -4,15 +4,12 @@ import {
   Users,
   Shield,    
   FileText,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-  Twitter,
+ 
 } from 'lucide-react'
-import Link from "next/link";
+
 import Image from 'next/image'
 import Footer from "../components/Footer"; 
+import BookPublishing from "./BookPublishing"; 
 
 export default function Services() {
   const services = [
@@ -143,6 +140,7 @@ export default function Services() {
               </div>
             </div>
           ))}
+          <BookPublishing/>
         </div>
 
       </div>
