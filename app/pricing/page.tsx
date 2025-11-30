@@ -92,7 +92,7 @@ export default function Pricing() {
               We offer a comprehensive monthly service that keeps your website
               optimized, your SEO strong, your app visible, and your social
               media buzzing — all for just{" "}
-              <span className="font-bold text-[#ff4500]">₹25,000/month or ₹2,40,000/year.</span>
+              <span className="font-bold text-[#ff4500]">₹35,000/month or ₹3,60,000/year.</span>
             </p>
           </div>
         </div>

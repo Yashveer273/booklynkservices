@@ -180,7 +180,7 @@ export default function Home() {
           className="relative z-10 max-w-7xl mx-auto text-white"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg leading-tight">
-            We dont just build websites, apps, & campaigns — we build your
+            We do not just build websites, apps, & campaigns — we build your
             business
           </h1>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10">
