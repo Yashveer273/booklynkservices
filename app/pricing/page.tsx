@@ -7,9 +7,9 @@ export default function Pricing() {
   const plans = [
     {
       name: "All-In-One Growth Package",
-      price: "₹25,000",
+      price: "₹35,000",
       period: "month",
-      yearlyPrice: "₹2,40,000/year (Save ₹60,000)",
+      yearlyPrice: "₹3,60,000/year (Save ₹60,000)",
       description: "Everything your brand needs — in one powerful package",
       features: [
         "Website Maintenance – speed, bug fixes, security checks, backups, reports",
