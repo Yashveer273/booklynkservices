@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 export default function Pricing() {
   const plans = [
     {
-      name: "All-In-One Growth Package",
+      name: "All-In-One Growth Package ",
       price: "₹35,000",
       period: "month",
       yearlyPrice: "₹3,60,000/year (Save ₹60,000)",
