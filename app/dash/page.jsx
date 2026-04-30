@@ -1016,22 +1016,24 @@ const AuthComponent = () => {
             <>
               <h2 className="text-2xl font-bold mb-6 color-black" style={{color: "black"}}>Sign In</h2>
               <input
-                type="text"
-                placeholder="User ID"
-                value={userIdInput}
-              onChange={(e) => setUserIdInput(e.target.value)}
-              required
-                className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-                className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
-              />
+  type="text"
+  placeholder="User ID"
+  value={userIdInput}
+  onChange={(e) => setUserIdInput(e.target.value)}
+  required
+  style={{ color: "black" }}
+  className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
+/>
+
+<input
+  type="password"
+  placeholder="Password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  required
+  style={{ color: "black" }}
+  className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
+/>
               <button className="w-full bg-[#e03e00] text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition" onClick={handleSubmit}>
                 Sign In
               </button>

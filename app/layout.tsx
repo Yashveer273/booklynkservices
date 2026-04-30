@@ -9,6 +9,13 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Booklynk Services - Your Business Solution',
   description: 'Professional business services and solutions',
+  icons: [
+    {
+      rel: 'icon',
+      url: '/Book-Lynk-Services-Pvt-Ltd-logo.jpg',
+      type: 'image/jpeg',
+    },
+  ],
 }
 
 export default function RootLayout({

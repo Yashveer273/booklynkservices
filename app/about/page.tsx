@@ -75,7 +75,7 @@ export default function About() {
               Our Services
             </Link>
             <Link
-              href="/contact"
+              href="https://booklynk-services-landing-page.vercel.app/"
               className="px-6 sm:px-8 py-3 rounded-full border-2 border-[var(--color-orange)] text-[var(--color-orange)] font-semibold hover:bg-[var(--color-orange)] hover:text-white transition-colors text-sm sm:text-base"
             >
               Get Started
