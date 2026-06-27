@@ -23,7 +23,7 @@ export default  function BookPublishing () {
             <section className="booklynk-hero">
                 <div className="hero-content">
                     <h1>From a Spark of an Idea to a Nationwide Bestseller</h1>
-                    <p>Your story deserves more than just publishing — it deserves a launch that transforms you into a recognised author with influence, authority and a powerful digital presence.</p>
+                    <p>Your story deserves more than just publishing  it deserves a launch that transforms you into a recognised author with influence, authority and a powerful digital presence.</p>
                 </div>
             </section>
 
@@ -31,7 +31,7 @@ export default  function BookPublishing () {
             <section className="booklynk-story">
                 <div className="story-inner">
                     <p>Every great book begins with a vision. We refine that vision into a professionally written manuscript, transform it with world-class design, publish it globally, and position you as a truly premium author.</p>
-                    <p>From writing → publishing → marketing → media features → bestseller badge — <strong>we take complete ownership of your book’s journey.</strong></p>
+                    <p>From writing → publishing → marketing → media features → bestseller badge <strong>we take complete ownership of your book’s journey.</strong></p>
                 </div>
             </section>
 

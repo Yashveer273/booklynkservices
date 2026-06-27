@@ -13,10 +13,14 @@ import {
   Cpu,
   Layers,
   Star,
+  TrendingUp,
+  FileText,
+  Rocket,
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Footer from "./components/Footer";
+import { FaChartLine, FaCoins } from "react-icons/fa";
 
 // ------------------- Stats Section -------------------
 const statsData = [
@@ -29,11 +33,13 @@ const statsData = [
     title: "Successful PR Projects",
     description: "PR projects completed with excellence",
   },
+
+
   {
     id: 2,
     icon: <Laptop className="w-6 h-6 text-white" />,
     color: "bg-emerald-500",
-    number: 10,
+    number: 36,
     suffix: "+",
     title: "Successful IT Projects",
     description: "IT solutions delivered on time",
@@ -51,11 +57,20 @@ const statsData = [
     id: 4,
     icon: <Smile className="w-6 h-6 text-white" />,
     color: "bg-orange-400",
-    number: 15,
+    number: 40,
     suffix: "",
     title: "Happy IT Clients",
     description: "Clients satisfied with our IT projects",
   },
+  {
+  id: 5,
+  icon: <FaChartLine className="w-6 h-6 text-white" />,
+  color: "bg-success",
+  number: 10,
+  suffix: "+",
+  title: "Investment Opportunities",
+  description: "Empowering startups with capital, strategic investors, and long-term growth support.",
+},
 ];
 
 // ------------------- Circle Features -------------------
@@ -108,6 +123,38 @@ const circleFeatures = [
     icon: <Star className="w-7 h-7 text-white" />,
     color: "bg-purple-500",
   },
+  {
+  id: 7,
+  title: "End-to-End Funding Support",
+  description:
+    "We support businesses at every stage of growth—from Seed and Pre-Seed funding to Angel Investment, Venture Capital, Private Equity, Growth Capital, and IPO readiness through our investor network and funding partners.",
+  icon: <Rocket className="w-7 h-7 text-white" />,
+  color: "bg-orange-500",
+},
+{
+  id: 8,
+  title: "Strong Investor Network",
+  description:
+    "Gain access to a wide network of angel investors, venture capital firms, private equity funds, family offices, and strategic investors looking for high-potential businesses.",
+  icon: <Users className="w-7 h-7 text-white" />,
+  color: "bg-blue-500",
+},
+{
+  id: 9,
+  title: "Investment-Ready Business",
+  description:
+    "We help prepare your business with financial models, pitch decks, valuations, due diligence, and documentation to maximize your chances of securing investment.",
+  icon: <FileText className="w-7 h-7 text-white" />,
+  color: "bg-green-500",
+},
+{
+  id: 10,
+  title: "Strategic Growth Partnership",
+  description:
+    "Beyond funding, we help businesses scale through strategic planning, investor relations, fundraising strategy, and long-term growth support until IPO readiness.",
+  icon: <TrendingUp className="w-7 h-7 text-white" />,
+  color: "bg-purple-500",
+},
 ];
 
 // ------------------- Video Card Component -------------------

@@ -9,7 +9,7 @@ import {
 
 import Image from 'next/image'
 import Footer from "../components/Footer";
-import BookPublishing from "./BookPublishing";
+import FundingSupportSection from "./FundingSupportSection";
 
 export default function Services() {
   const services = [
@@ -141,7 +141,8 @@ export default function Services() {
                 </div>
               </div>
             ))}
-            <BookPublishing />
+            {/* <BookPublishing /> */}
+            <FundingSupportSection/>
           </div>
 
         </div>
