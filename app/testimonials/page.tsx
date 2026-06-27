@@ -12,7 +12,7 @@ export default function Testimonials() {
       position: "M.D. at Global Tech",
       company: "Global Tech",
       content:
-        "Book Lynk Services transformed my online presence! My patient inquiries have skyrocketed, thanks to their incredible reputation management strategies.",
+        "Booklynk Services transformed my online presence! My patient inquiries have skyrocketed, thanks to their incredible reputation management strategies.",
       image: "/profile.jpg",
     },
     {

@@ -31,7 +31,7 @@ const Navbar = () => {
 
             <Image
               src="/Book-Lynk-Services-Pvt-Ltd-logo.jpg"
-              alt="Book Lynk"
+              alt="Booklynk"
               width={54}
               height={54}
               className="rounded-lg object-cover"
@@ -40,7 +40,7 @@ const Navbar = () => {
             <div>
 
               <h2 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
-                Book <span className="text-[var(--color-orange)]">Lynk</span>
+                Book<span className="text-[var(--color-orange)]">lynk</span>
               </h2>
 
               <p className="hidden sm:block text-[10px] uppercase tracking-widest text-gray-400">

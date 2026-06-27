@@ -231,7 +231,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-8 text-lg leading-9 text-gray-600 max-w-lg">
-                At Book Lynk Services Pvt Ltd, we are passionate about turning
+                At Booklynk Services Pvt Ltd, we are passionate about turning
                 visionary ideas into powerful digital realities. As a dynamic IT
                 Solutions and PR company, we empower businesses to thrive in todays
                 fast-paced digital ecosystem.
@@ -266,7 +266,7 @@ export default function Home() {
               <div className="relative rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(15,23,42,0.15)] bg-white p-2">
                 <Image
                   src="/hero-business.jpg"
-                  alt="Book Lynk Services"
+                  alt="Booklynk Services"
                   width={900}
                   height={650}
                   className="w-full max-w-3xl rounded-[24px] object-cover"

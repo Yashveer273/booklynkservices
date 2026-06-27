@@ -47,7 +47,7 @@ export default function Footer() {
               <div className="w-12 h-12 mr-3">
                 <img
                   src="/Book-Lynk-Services-Pvt-Ltd-logo.jpg"
-                  alt="Book Lynk Services Logo"
+                  alt="Booklynk Services Logo"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
@@ -55,7 +55,7 @@ export default function Footer() {
 
                 <h2 className="text-3xl font-bold text-white">
 
-                  Book <span className="text-orange-500">Lynk</span>
+                  Book <span className="text-orange-500">lynk</span>
 
                 </h2>
 
@@ -228,7 +228,7 @@ India`}
       <div className="border-t border-white/10 mt-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2025 Book Lynk Services Pvt Ltd. All rights reserved.
+            © 2025 Booklynk Services Pvt Ltd. All rights reserved.
           </div>
           <div className="flex space-x-6 text-sm">
             <Link href="/style-guide"

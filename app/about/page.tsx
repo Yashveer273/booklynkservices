@@ -103,7 +103,7 @@ export default function About() {
                   Elevate Your Online Presence with Us
                 </h3>
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  At Book Lynk Services, we help individuals and businesses
+                  At Booklynk Services, we help individuals and businesses
                   build powerful digital identities. As a leading IT and
                   media-tech company, we combine innovative technology with
                   strategic storytelling to boost visibility, trust, and growth.
@@ -200,7 +200,7 @@ export default function About() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-4 sm:mb-6 leading-tight">
-              Why Choose Book Lynk Services Pvt Ltd?
+              Why Choose Booklynk Services Pvt Ltd?
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
               We stand out from the competition through our commitment to

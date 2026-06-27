@@ -83,7 +83,7 @@ export default function ContactPage() {
             Thank You!
           </h2>
           <p className="text-lg sm:text-xl text-gray-700 text-center max-w-2xl">
-            Your message has been successfully sent. Our team at Book Lynk Services will get back to you shortly.
+            Your message has been successfully sent. Our team at Booklynk Services will get back to you shortly.
           </p>
           <button
             onClick={() => setSuccessMsg(false)}
@@ -102,7 +102,7 @@ export default function ContactPage() {
         <div className="bg-gradient-to-br from-[#e03e00] to-[#ff6a00] text-white p-6 sm:p-10 flex flex-col justify-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">Contact Us</h2>
           <p className="mb-6 opacity-90 text-sm sm:text-base">
-            Not sure what you need? Our team at Book Lynk Services will be happy
+            Not sure what you need? Our team at Booklynk Services will be happy
             to listen to you and suggest digital solutions you hadn’t considered.
           </p>
 
