@@ -15,21 +15,35 @@ export default function Portfolio() {
       image: "/Collegemitra.jpg",
       tags: ["Mobile App", "Education"],
       client: "Collegemitra",
-      link: "https://play.google.com/store/apps/details?id=com.aaditya.collegemitra",
+      appLink:
+        "https://play.google.com/store/apps/details?id=com.aaditya.collegemitra",
     },
     {
       id: 2,
       title: "Modernbazaar",
-      category: "App & Web App",
+      category: "App & Website",
       description:
-        "An app and web platform for modern shopping experience and online marketplace.",
+        "An app and web platform for a modern shopping experience and online marketplace.",
       image: "/modernbazaar.jpg",
-      tags: ["E-commerce", "Web App", "Mobile App"],
+      tags: ["E-commerce", "Website", "Mobile App"],
       client: "Modernbazaar",
       link: "https://www.modernbazaar.online/",
+      appLink:
+        "https://play.google.com/store/apps/details?id=io.MBapp.tekshapersnew&pcampaignid=web_share",
     },
     {
       id: 3,
+      title: "Gaya Ji Traders",
+      category: "E-commerce Website",
+      description:
+        "A modern e-commerce platform for electronics and home appliances, featuring product browsing, secure ordering, online payments, and order tracking.",
+      image: "/gayaji.jpg",
+      tags: ["E-commerce", "Electronics", "Home Appliances", "Website"],
+      client: "Gaya Ji Traders",
+      link: "https://gaya-ji-frontend.vercel.app/",
+    },
+    {
+      id: 4,
       title: "Havenhubinfra",
       category: "Website",
       description:
@@ -40,18 +54,20 @@ export default function Portfolio() {
       link: "https://www.havenhubinfra.com/",
     },
     {
-      id: 4,
-      title: "EZ Super App",
-      category: "App",
+      id: 5,
+      title: "Urban Aura Services",
+      category: "App & Website",
       description:
-        "A multi-purpose super app offering various services under one platform.",
-      image: "/EZ Super App.jpg",
-      tags: ["Mobile App", "Super App"],
-      client: "EZ Super App",
-      link: "https://play.google.com/store/apps/details?id=com.EZ_M_Three.TheEZStartUP",
+        "An on-demand home services platform that enables customers to book professional doorstep services through a mobile app and website.",
+      image: "/urbanauracs.jpg",
+      tags: ["Home Services", "Mobile App", "Website"],
+      client: "Urban Aura Services",
+      link: "https://www.urbanauracs.com/",
+      appLink:
+        "https://play.google.com/store/apps/details?id=com.urbanauracs.urbenauraservices&pcampaignid=web_share",
     },
     {
-      id: 5,
+      id: 6,
       title: "CA Website Plan",
       category: "Website",
       description:
@@ -62,7 +78,7 @@ export default function Portfolio() {
       link: "https://chartered.booklynkservices.com/",
     },
     {
-      id: 6,
+      id: 7,
       title: "Clinic Website",
       category: "Website",
       description:
@@ -71,12 +87,82 @@ export default function Portfolio() {
       tags: ["Healthcare", "Website"],
       client: "Clinic",
       link: "https://clinic.booklynkservices.com/",
-    },
+    },{
+  id: 8,
+  title: "Shoppers Stop",
+  category: "Shopping App",
+  description:
+    "A fashion shopping app for apparel, accessories, beauty, and lifestyle products.",
+  image:
+    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200",
+  tags: ["Shopping", "Fashion", "Mobile App"],
+  client: "Shoppers Stop",
+  appLink: "https://play.google.com/store/apps/details?id=shoppersstop.shoppersstop",
+},
+{
+  id: 9,
+  title: "Westside",
+  category: "Shopping App",
+  description:
+    "A lifestyle shopping app for men, women, kids, home decor, accessories, footwear, and beauty products.",
+  image:
+    "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200",
+  tags: ["Shopping", "Fashion", "Lifestyle", "Mobile App"],
+  client: "Westside",
+  appLink: "https://play.google.com/store/apps/details?id=com.westside",
+},
+{
+  id: 10,
+  title: "SIVVI",
+  category: "Fashion Shopping App",
+  description:
+    "A fashion shopping app for women, men, and kids, focused on online fashion and lifestyle products.",
+  image:
+    "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200",
+  tags: ["Fashion", "E-commerce", "Mobile App"],
+  client: "SIVVI",
+  appLink: "https://play.google.com/store/apps/details?id=com.sivvi.app",
+},
+{
+  id: 11,
+  title: "MAXPRO Fitness",
+  category: "Fitness App",
+  description:
+    "A fitness and performance tracking app designed for users who want to track workouts and achieve fitness goals.",
+  image:
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200",
+  tags: ["Fitness", "Health", "Mobile App"],
+  client: "MAXPRO",
+  appLink: "https://play.google.com/store/apps/details?id=com.itza.maxpro",
+},
+{
+  id: 12,
+  title: "Miles One",
+  category: "Education App",
+  description:
+    "An education and career-focused app for accounting professionals, certifications, and AI-ready learning paths.",
+  image:
+    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200",
+  tags: ["Education", "Accounting", "Career", "Mobile App"],
+  client: "Miles One",
+  appLink: "https://play.google.com/store/apps/details?id=com.miles.one",
+},
+{
+  id: 13,
+  title: "Habuild",
+  category: "Health & Wellness App",
+  description:
+    "A daily yoga, fitness, and habit-building app focused on wellness, mindfulness, and healthy routines.",
+  image:
+    "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200",
+  tags: ["Yoga", "Fitness", "Wellness", "Mobile App"],
+  client: "Habuild",
+  appLink: "https://play.google.com/store/apps/details?id=in.habuild",
+},
   ];
 
   return (
     <div className="bg-gray-50">
-      {/* Hero Section */}
       <section className="bg-white py-12 sm:py-16 md:py-20">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 mt-8">
@@ -88,7 +174,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Portfolio Section */}
       <section className="py-12 sm:py-16 md:py-20">
         <div className="space-y-20 sm:space-y-28 md:space-y-40">
           {projects.map((project, index) => (
@@ -96,7 +181,6 @@ export default function Portfolio() {
               key={project.id}
               className="relative w-full flex flex-col items-center md:flex-row justify-center px-4 sm:px-6"
             >
-              {/* Project Image */}
               <motion.div
                 initial={{ x: index % 2 === 0 ? 200 : -200, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
@@ -107,11 +191,10 @@ export default function Portfolio() {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-[220px] sm:h-[350px] md:h-[500px] lg:h-[650px] object-contain rounded-xl bg-white shadow-md"
+                  className="w-full h-[220px] sm:h-[350px] md:h-[500px] lg:h-[650px] object-cover rounded-xl bg-white shadow-md"
                 />
               </motion.div>
 
-              {/* Info Card */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -121,16 +204,22 @@ export default function Portfolio() {
                   w-full max-w-[360px] sm:max-w-[400px] md:w-[420px]
                   mt-6 md:mt-0
                   md:absolute md:top-1/2 md:-translate-y-1/2
-                  ${index % 2 === 0 ? "md:left-6 lg:left-20" : "md:right-6 lg:right-20"}`}
+                  ${
+                    index % 2 === 0
+                      ? "md:left-6 lg:left-20"
+                      : "md:right-6 lg:right-20"
+                  }`}
               >
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                   {project.title}
                 </h3>
+
                 <div className="flex flex-wrap items-center text-xs text-gray-700 mb-3 gap-2">
                   <span>{project.client}</span>
                   <span>•</span>
                   <span>{project.category}</span>
                 </div>
+
                 <p className="text-gray-800 text-sm mb-4 leading-relaxed">
                   {project.description}
                 </p>
@@ -147,24 +236,34 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                {/* View Details Button */}
-                <button
-                  onClick={() => window.open(project.link, "_blank")}
-                  className="inline-flex items-center text-blue-700 hover:text-blue-900 font-medium text-sm mt-2 transition-colors"
-                >
-                  View Details
-                  <ExternalLink className="w-4 h-4 ml-1" />
-                </button>
+                <div className="flex flex-wrap gap-3 mt-3">
+                  {project.link && (
+                    <button
+                      onClick={() => window.open(project.link, "_blank")}
+                      className="inline-flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors text-sm font-medium"
+                    >
+                      Visit Website
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </button>
+                  )}
+
+                  {project.appLink && (
+                    <button
+                      onClick={() => window.open(project.appLink, "_blank")}
+                      className="inline-flex items-center px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors text-sm font-medium"
+                    >
+                      View App
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </button>
+                  )}
+                </div>
               </motion.div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
 }
-
-
