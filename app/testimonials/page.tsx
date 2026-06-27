@@ -81,51 +81,50 @@ export default function Testimonials() {
   ];
 
   return (
-    <div className="bg-gray-50 py-12 sm:py-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 mt-8">
-          Client <span className="text-[#e03e00]">Testimonials</span>
-        </h2>
+    <div className="min-h-screen flex flex-col bg-gray-50 pt-20">
+      <main className="flex-1">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 mt-8">
+            Client <span className="text-[#e03e00]">Testimonials</span>
+          </h2>
 
-        <div className="space-y-8 sm:space-y-10">
-          {testimonials.map((t, index) => (
-            <div
-              key={t.id}
-              className={`flex flex-col md:flex-row items-center md:items-start gap-6 p-6 sm:p-8 rounded-2xl shadow-md ${
-                index % 2 === 1 ? "bg-[#e03e00] text-white" : "bg-white"
-              }`}
-            >
-              {/* Image */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex-shrink-0">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="text-center md:text-left">
-                <h3 className="text-lg sm:text-xl font-semibold">{t.name}</h3>
-                <p className="text-xs sm:text-sm opacity-80 mb-3 sm:mb-4">
-                  {t.position} @ {t.company}
-                </p>
-                <div className="flex flex-col sm:flex-row items-center md:items-start">
-                  <Quote
-                    className={`w-5 h-5 sm:w-6 sm:h-6 mb-2 sm:mb-0 sm:mr-2 ${
-                      index % 2 === 1 ? "text-white/70" : "text-[#e03e00]"
-                    }`}
+          <div className="space-y-8 sm:space-y-10">
+            {testimonials.map((t, index) => (
+              <div
+                key={t.id}
+                className={`flex flex-col md:flex-row items-center md:items-start gap-6 p-6 sm:p-8 rounded-2xl shadow-md ${index % 2 === 1 ? "bg-[#e03e00] text-white" : "bg-white"
+                  }`}
+              >
+                {/* Image */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex-shrink-0">
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="w-full h-full object-cover"
                   />
-                  <p className="leading-relaxed text-sm sm:text-base max-w-3xl">
-                    {t.content}
+                </div>
+
+                {/* Content */}
+                <div className="text-center md:text-left">
+                  <h3 className="text-lg sm:text-xl font-semibold">{t.name}</h3>
+                  <p className="text-xs sm:text-sm opacity-80 mb-3 sm:mb-4">
+                    {t.position} @ {t.company}
                   </p>
+                  <div className="flex flex-col sm:flex-row items-center md:items-start">
+                    <Quote
+                      className={`w-5 h-5 sm:w-6 sm:h-6 mb-2 sm:mb-0 sm:mr-2 ${index % 2 === 1 ? "text-white/70" : "text-[#e03e00]"
+                        }`}
+                    />
+                    <p className="leading-relaxed text-sm sm:text-base max-w-3xl">
+                      {t.content}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-
+      </main>
       {/* Footer with spacing */}
       <div className="mt-12 sm:mt-20">
         <Footer />

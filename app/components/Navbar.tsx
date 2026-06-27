@@ -17,43 +17,51 @@ const Navbar = () => {
     { name: 'Services', href: '/services' },
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Testimonials', href: '/testimonials' },
-    { name: 'Dashboard', href: '/dash' },
-    
   ]
 
   const isActive = (href: string) => pathname === href
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 py-4">
-      <div className="w-full relative flex items-center">
-        
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+
         {/* Left Logo + Company Name */}
-        <div className="flex items-center space-x-2 absolute left-6">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image 
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center gap-3">
+
+            <Image
               src="/Book-Lynk-Services-Pvt-Ltd-logo.jpg"
-              alt="BookLynk Logo"
-              width={32}
-              height={32}
-              className="object-contain"
+              alt="Book Lynk"
+              width={54}
+              height={54}
+              className="rounded-lg object-cover"
             />
-            <span className="text-base font-semibold" style={{color:"orange"}}>
-              Book Lynk Services Pvt Ltd
-            </span>
+
+            <div>
+
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+                Book <span className="text-[var(--color-orange)]">Lynk</span>
+              </h2>
+
+              <p className="hidden sm:block text-[10px] uppercase tracking-widest text-gray-400">
+                Services Pvt Ltd
+              </p>
+
+            </div>
+
           </Link>
         </div>
 
         {/* Center White Pill Navigation */}
-        <div className="hidden md:flex bg-white rounded-full shadow px-8 py-5 items-center space-x-6 mx-auto">
+        <div className="hidden lg:flex items-center gap-8">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className={`text-sm font-medium transition-colors duration-200 ${
-                isActive(item.href)
-                  ? 'text-[#ff4500]'
-                  : 'text-black hover:text-[#ff4500]'
-              }`}
+              className={`relative text-[15px] font-medium transition-all duration-300 ${isActive(item.href)
+                ? 'text-[var(--color-orange)] after:absolute after:left-0 after:-bottom-2 after:w-full after:h-[2px] after:bg-[var(--color-orange)]'
+                : 'text-gray-700 hover:text-[var(--color-orange)]'
+                }`}
             >
               {item.name}
             </Link>
@@ -61,17 +69,17 @@ const Navbar = () => {
         </div>
 
         {/* Right Contact Button */}
-        <div className="hidden md:flex absolute right-6">
+        <div className="hidden lg:flex">
           <Link
             href="/contact"
-            className="px-5 py-2 rounded-full text-sm font-semibold bg-[#ff4500] text-white hover:bg-[#e03e00] transition-colors duration-200"
+            className="bg-[var(--color-orange)] text-white px-8 py-4 rounded-full border border-transparent font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Contact Us
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden absolute right-6">
+        <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="inline-flex items-center justify-center p-2 rounded-md text-white bg-black/30 hover:bg-black/50"
@@ -83,18 +91,17 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white border-t shadow-md md:hidden">
-          <div className="px-4 pt-4 pb-3 space-y-2">
+        <div className="absolute top-20 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl lg:hidden">
+          <div className="px-5 py-5 space-y-3">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? 'text-[#ff4500] bg-orange-50'
-                    : 'text-black hover:text-[#ff4500] hover:bg-orange-50'
-                }`}
+                className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${isActive(item.href)
+                  ? "bg-orange-50 text-[var(--color-orange)]"
+                  : "text-gray-700 hover:bg-gray-100"
+                  }`}
               >
                 {item.name}
               </Link>
@@ -102,7 +109,7 @@ const Navbar = () => {
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium bg-[#ff4500] text-white hover:bg-[#e03e00]"
+              className="block w-full text-center py-3 rounded-xl bg-[var(--color-orange)] text-white font-semibold hover:bg-orange-600 transition"
             >
               Contact Us
             </Link>

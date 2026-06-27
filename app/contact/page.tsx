@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Mail, Phone, Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { firestore } from "../dash/firebasecon";
+import { firestore } from "../dashboard/firebasecon";
 type FormData = {
   name: string;
-  
+
   email: string;
   phone: string;
 
@@ -29,12 +29,12 @@ export default function ContactPage() {
   const validate = () => {
     const newErrors: Partial<FormData> = {};
     if (!formData.name.trim()) newErrors.name = "Full Name is required";
- 
+
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Email is invalid";
     if (!formData.phone.trim()) newErrors.phone = "Phone Number is required";
     else if (!/^\d{10,15}$/.test(formData.phone.replace(/\D/g, ""))) newErrors.phone = "Phone Number is invalid";
-   
+
     if (!formData.subject.trim()) newErrors.subject = "Subject is required";
     if (!formData.message.trim()) newErrors.message = "Message is required";
     return newErrors;
@@ -49,20 +49,20 @@ export default function ContactPage() {
     } else {
       setErrors({});
       try {
-      await addDoc(collection(firestore, "tickets"), {
-        ...formData,
-        status: "open", // default
-        createdAt: serverTimestamp(),
-      });
+        await addDoc(collection(firestore, "tickets"), {
+          ...formData,
+          status: "open", // default
+          createdAt: serverTimestamp(),
+        });
 
-      alert("Message sent successfully!");
-      setFormData({ name: "", phone: "", email: "", subject: "", message: "" });
-    } catch (error) {
-      console.error("Error saving ticket: ", error);
-    }
+        alert("Message sent successfully!");
+        setFormData({ name: "", phone: "", email: "", subject: "", message: "" });
+      } catch (error) {
+        console.error("Error saving ticket: ", error);
+      }
       setSuccessMsg(true);
 
-     
+
     }
   };
 
@@ -95,9 +95,8 @@ export default function ContactPage() {
       )}
 
       <div
-        className={`max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-2xl rounded-2xl overflow-hidden ${
-          successMsg ? "opacity-30 pointer-events-none" : ""
-        }`}
+        className={`max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 shadow-2xl rounded-2xl overflow-hidden ${successMsg ? "opacity-30 pointer-events-none" : ""
+          }`}
       >
         {/* Left Section */}
         <div className="bg-gradient-to-br from-[#e03e00] to-[#ff6a00] text-white p-6 sm:p-10 flex flex-col justify-center">
@@ -142,16 +141,16 @@ export default function ContactPage() {
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              
-<input
-                 type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="name"
-                  className="w-full border text-black border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#e03e00]"
-                />
-              
+
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="name"
+                className="w-full border text-black border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#e03e00]"
+              />
+
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -180,7 +179,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            
+
 
             <div className="flex flex-col">
               <input

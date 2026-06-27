@@ -22,8 +22,8 @@ import Footer from "./components/Footer";
 const statsData = [
   {
     id: 1,
-    icon: <Briefcase className="w-8 h-8 text-white" />,
-    color: "bg-[var(--color-orange)]",
+    icon: <Briefcase className="w-6 h-6 text-white" />,
+    color: "bg-orange-500",
     number: 50,
     suffix: "+",
     title: "Successful PR Projects",
@@ -31,8 +31,8 @@ const statsData = [
   },
   {
     id: 2,
-    icon: <Laptop className="w-8 h-8 text-white" />,
-    color: "bg-[var(--color-teal)]",
+    icon: <Laptop className="w-6 h-6 text-white" />,
+    color: "bg-emerald-500",
     number: 10,
     suffix: "+",
     title: "Successful IT Projects",
@@ -40,8 +40,8 @@ const statsData = [
   },
   {
     id: 3,
-    icon: <Users className="w-8 h-8 text-white" />,
-    color: "bg-[var(--color-navy)]",
+    icon: <Users className="w-6 h-6 text-white" />,
+    color: "bg-slate-800",
     number: 35,
     suffix: "",
     title: "Happy PR Clients",
@@ -49,7 +49,7 @@ const statsData = [
   },
   {
     id: 4,
-    icon: <Smile className="w-8 h-8 text-white" />,
+    icon: <Smile className="w-6 h-6 text-white" />,
     color: "bg-orange-400",
     number: 15,
     suffix: "",
@@ -63,37 +63,49 @@ const circleFeatures = [
   {
     id: 1,
     title: "Expert team of professionals",
-    icon: <Users className="w-8 h-8 text-white" />,
-    color: "bg-[var(--color-orange)]",
+    description:
+      "Our experienced IT and PR specialists deliver innovative solutions tailored to your business goals.",
+    icon: <Users className="w-7 h-7 text-white" />,
+    color: "bg-orange-500",
   },
   {
     id: 2,
     title: "24/7 customer support",
-    icon: <Headphones className="w-8 h-8 text-white" />,
+    description:
+      "Our dedicated support team is available around the clock to assist you whenever you need help.",
+    icon: <Headphones className="w-7 h-7 text-white" />,
     color: "bg-red-500",
   },
   {
     id: 3,
     title: "Proven track record",
-    icon: <CheckCircle className="w-8 h-8 text-white" />,
-    color: "bg-[var(--color-navy)]",
+    description:
+      "We have successfully delivered projects for businesses across multiple industries with measurable results.",
+    icon: <CheckCircle className="w-7 h-7 text-white" />,
+    color: "bg-slate-800",
   },
   {
     id: 4,
     title: "End-to-end IT & PR solutions",
-    icon: <Cpu className="w-8 h-8 text-white" />,
-    color: "bg-[var(--color-teal)]",
+    description:
+      "From strategy and development to branding and digital marketing, we handle every stage of your growth.",
+    icon: <Cpu className="w-7 h-7 text-white" />,
+    color: "bg-emerald-500",
   },
   {
     id: 5,
     title: "Tailored strategies for every industry",
-    icon: <Layers className="w-8 h-8 text-white" />,
+    description:
+      "Every business is unique, so we create customized IT and PR strategies that fit your industry and objectives.",
+    icon: <Layers className="w-7 h-7 text-white" />,
     color: "bg-orange-600",
   },
   {
     id: 6,
     title: "95% success rate with 4.9/5 client rating",
-    icon: <Star className="w-8 h-8 text-white" />,
+    description:
+      "Our consistent client satisfaction and successful project delivery reflect our commitment to excellence.",
+    icon: <Star className="w-7 h-7 text-white" />,
     color: "bg-purple-500",
   },
 ];
@@ -104,20 +116,39 @@ function VideoCard({ src, title }: { src: string; title: string }) {
 
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
+      whileHover={{
+        y: -8,
+        scale: 1.02
+      }}
       whileInView={{ opacity: [0, 1], y: [30, 0] }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl"
+      className="group relative w-full h-[420px] rounded-3xl overflow-hidden border border-gray-100 hover:border-orange-200 bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
     >
       <video
         ref={videoRef}
         src={src}
         controls
         muted
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500"
       />
-      <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-white bg-black/50 px-3 py-1 rounded-md text-sm">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+
+        <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xl">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            className="w-6 h-6 text-orange-500 ml-1"
+          >
+            <path d="M11.596 8.697 6.233 11.98A.802.802 0 0 1 5 11.283V4.717a.802.802 0 0 1 1.233-.697l5.363 3.283a.802.802 0 0 1 0 1.394z" />
+          </svg>
+
+        </div>
+
+      </div>
+      <p className="absolute bottom-6 left-6 bg-white px-5 py-3 rounded-2xl shadow-lg font-semibold text-slate-900">
         {title}
       </p>
     </motion.div>
@@ -160,143 +191,306 @@ export default function Home() {
   // Email validation function
 
   return (
-    <div className="bg-[var(--color-lightgray)]">
+    <div className="pt-10">
       {/* ---------------- Hero Section ---------------- */}
-      <section className="relative min-h-screen flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden py-16">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover blur-sm"
-        >
-          <source src="/hero-bg.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/40"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 max-w-7xl mx-auto text-white"
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg leading-tight">
-            We do not just build websites, apps, & campaigns — we build your
-            business
-          </h1>
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10">
-            <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-white drop-shadow-md">
-              At Book Lynk Services Pvt Ltd, we are passionate about turning
-              visionary ideas into powerful digital realities. As a dynamic IT
-              Solutions and PR company, we empower businesses to thrive in
-              todays fast-paced digital ecosystem.
-            </p>
+      <section className="relative bg-gradient-to-b from-[#fffaf7] via-[#fffaf7] to-[#F8FAFC] overflow-hidden">
+
+        {/* Background Shapes */}
+        <div className="absolute -top-20 -left-24 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[150px] opacity-40"></div>
+        <div className="absolute bottom-0 -right-24 w-[500px] h-[500px] bg-sky-100 rounded-full blur-[150px] opacity-30"></div>
+
+        <div className="absolute left-12 top-80 hidden lg:block opacity-20">
+          <div className="grid grid-cols-6 gap-3">
+            {Array.from({ length: 36 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-1.5 h-1.5 rounded-full bg-amber-500"
+              />
+            ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 px-4">
-            <Link
-              href="/contact"
-              className="bg-[var(--color-orange)] text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-[var(--color-orange-hover)] hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center text-sm sm:text-base"
-            >
-              Get Started <ArrowRight className="ml-2" size={20} />
-            </Link>
-            <Link
-              href="/portfolio"
-              className="border-2 border-[var(--color-teal)] text-[var(--color-teal)] px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-[var(--color-teal)] hover:text-white transition-colors text-sm sm:text-base"
-            >
-              View Our Work
-            </Link>
-          </div>
-        </motion.div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-48 lg:pt-24 lg:pb-52">
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: .8 }}
+            className="grid lg:grid-cols-2 gap-16 items-center"
+          >
+
+            {/* LEFT SIDE */}
+            <div>
+
+              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-5 py-2 rounded-full text-sm font-semibold mb-6">
+                Trusted IT & PR Solutions
+              </div>
+              <h1 className="max-w-lg text-5xl lg:text-6xl font-bold leading-tight text-slate-900">
+                We do not just build websites, apps, & campaigns, we build your
+                business
+              </h1>
+
+              <p className="mt-8 text-lg leading-9 text-gray-600 max-w-lg">
+                At Book Lynk Services Pvt Ltd, we are passionate about turning
+                visionary ideas into powerful digital realities. As a dynamic IT
+                Solutions and PR company, we empower businesses to thrive in todays
+                fast-paced digital ecosystem.
+              </p>
+
+              <div className="flex flex-wrap gap-4 mt-10">
+
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-orange-500 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                >
+                  Get Started
+                </Link>
+
+                <Link
+                  href="/portfolio"
+                  className="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-xl border-2 border-gray-200 bg-white text-gray-800 font-semibold hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] hover:shadow-lg transition-all duration-300"
+                >
+                  View Our Work
+                  <ArrowRight size={18} />
+                </Link>
+
+              </div>
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="relative flex justify-center lg:justify-end lg:-mt-8">
+
+              <div className="absolute -z-10 w-[450px] h-[450px] bg-orange-100 rounded-full blur-[140px] opacity-40 right-10"></div>
+
+              {/* Main Image */}
+              <div className="relative rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(15,23,42,0.15)] bg-white p-2">
+                <Image
+                  src="/hero-business.jpg"
+                  alt="Book Lynk Services"
+                  width={900}
+                  height={650}
+                  className="w-full max-w-3xl rounded-[24px] object-cover"
+                  priority
+                />
+              </div>
+
+              {/* Floating Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: .5 }}
+                className="absolute bottom-6 left-4 bg-white rounded-2xl shadow-2xl px-4 py-2 border border-gray-100 backdrop-blur-md"
+              >
+                <div className="flex items-center gap-3">
+
+                  <div className="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center">
+                    <CheckCircle className="text-orange-500 w-6 h-6" />
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900">
+                      Trusted Partner
+                    </h4>
+
+                    <p className="text-base text-gray-500">
+                      Helping Businesses Grow
+                    </p>
+                  </div>
+                </div>
+
+              </motion.div>
+
+              <div className="absolute right-2 top-90 opacity-20 hidden lg:block">
+                <div className="grid grid-cols-6 gap-3">
+                  {Array.from({ length: 36 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className="w-1.5 h-1.5 rounded-full bg-orange-400"
+                    />
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+          </motion.div>
+
+        </div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gray-200"></div>
       </section>
 
       {/* ---------------- Stats Section ---------------- */}
-      <section id="stats-section" className="py-12 sm:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
-            {statsData.map((stat, index) => (
-              <motion.div
-                key={stat.id}
-                whileInView={{ opacity: [0, 1], y: [30, 0] }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center p-4 sm:p-6 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300"
-              >
-                <div
-                  className={`flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full mx-auto mb-3 sm:mb-4 ${stat.color}`}
+
+      <section
+        id="stats-section"
+        className="relative -mt-24 pb-24 bg-white z-20"
+      >
+        <div className="text-center pt-20 mb-20">
+
+          <span className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-5 py-2 rounded-full text-sm font-semibold">
+
+            Our Impact
+
+          </span>
+
+          <h2 className="mt-6 text-5xl font-bold text-slate-900">
+
+            Delivering Results That Matter
+
+          </h2>
+
+          <div className="w-20 h-1 bg-orange-500 rounded-full mx-auto mt-5"></div>
+
+          <p className="mt-4 max-w-3xl mx-auto text-gray-500 text-lg">
+
+            We combine innovation, technology, and strategic public relations to help businesses achieve measurable growth.
+
+          </p>
+          <div className="h-6"></div>
+
+
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="bg-white rounded-[36px] border border-gray-100 shadow-[0_35px_80px_rgba(15,23,42,0.08)] overflow-hidden">
+
+            <div className="grid grid-cols-2 lg:grid-cols-4">
+
+              {statsData.map((stat, index) => (
+
+                <motion.div
+                  key={stat.id}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.03,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={`group p-10 text-center transition-all duration-300 ${index !== statsData.length - 1
+                    ? "lg:border-r border-gray-100"
+                    : ""
+                    }`}
                 >
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 text-white">
+
+                  <div
+                    className={`${stat.color} w-16 h-16 rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {stat.icon}
                   </div>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[var(--color-navy)] mb-1">
-                  {counters[index]}
-                  {stat.suffix}
-                </h3>
-                <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                  {stat.title}
-                </p>
-                <p className="text-gray-500 text-xs sm:text-sm mt-1">
-                  {stat.description}
-                </p>
-              </motion.div>
-            ))}
+
+                  <h2 className="text-6xl font-extrabold text-slate-900 tracking-tight">
+                    {counters[index]}
+                    {stat.suffix}
+                  </h2>
+
+                  <p className="mt-4 text-gray-500 text-lg font-medium leading-7">
+                    {stat.title}
+                  </p>
+
+                </motion.div>
+
+              ))}
+
+            </div>
+
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gray-100"></div>
       </section>
 
       {/* ---------------- Features Section ---------------- */}
-      <section className="py-16 sm:py-20 bg-[var(--color-lightgray)]">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <motion.h2
-            whileInView={{ opacity: [0, 1], y: [20, 0] }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6 leading-tight"
-          >
-            Why Choose Book Lynk Services Pvt Ltd?
-          </motion.h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
-            With years of expertise in IT, PR, and Digital Marketing, we have
-            empowered businesses and individuals to build strong digital
-            identities and achieve measurable growth.
-          </p>
+      <section className="relative py-24 bg-[#FAFBFC] border-t border-gray-100 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-orange-100 blur-[120px] opacity-30 rounded-full"></div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="absolute bottom-0 right-10 w-72 h-72 bg-blue-100 blur-[120px] opacity-20 rounded-full"></div>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-20">
+
+            <span className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-5 py-2 rounded-full text-sm font-semibold">
+              Why Choose Us
+            </span>
+
+            <h2 className="mt-6 text-5xl font-bold text-slate-900">
+              Solutions That Drive Business Growth
+            </h2>
+
+            <div className="w-20 h-1 bg-orange-500 rounded-full mx-auto mt-5"></div>
+
+            <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-500 leading-8">
+              With years of expertise in IT, PR, and Digital Marketing, we have
+              empowered businesses and individuals to build strong digital
+              identities and achieve measurable growth.
+            </p>
+
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {circleFeatures.map((feature, index) => (
               <motion.div
-                whileInView={{ opacity: [0, 1], y: [30, 0] }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 key={feature.id}
-                className="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
+                whileHover={{
+                  y: -12,
+                  scale: 1.03
+                }}
+                transition={{
+                  duration: .35,
+                  delay: index * 0.08
+                }}
+                viewport={{ once: true }}
+                className="group relative bg-white border border-gray-100 rounded-3xl p-10 min-h-[340px] shadow-sm hover:shadow-2xl hover:border-orange-100 transition-all duration-300 overflow-hidden"
               >
+
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 bg-orange-50 -z-10"></div>
+
+
                 <div
-                  className={`flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full mx-auto mb-3 sm:mb-4 ${feature.color}`}
+                  className={`relative z-10 ${feature.color} w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg mb-8 group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 text-white">
-                    {feature.icon}
-                  </div>
+                  {feature.icon}
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-[var(--color-navy)] mb-2 leading-tight">
+
+                <h3 className="relative z-10 text-[30px] font-bold text-slate-900 mb-4 leading-tight">
                   {feature.title}
                 </h3>
+
+                <div className="relative z-10 w-14 h-1 bg-orange-500 rounded-full mb-6"></div>
+
+                <p className="relative z-10 text-gray-500 leading-8 text-lg">
+                  {feature.description}
+                </p>
+
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+
+      </section >
 
       {/* ---------------- Videos Section (4 Videos) ---------------- */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6 sm:mb-8 leading-tight">
-            Examples of the Work We Do
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
-            These videos showcase the kind of IT, PR, and digital solutions we
-            create for our clients.
-          </p>
+      <section className="relative py-24 bg-white border-t border-gray-100 overflow-hidden">
+        {/* Background Blur */}
+        <div className="absolute -top-10 right-10 w-80 h-80 bg-orange-100 blur-[120px] opacity-30 rounded-full"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-100 blur-[120px] opacity-20 rounded-full"></div>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+
+            <span className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-5 py-2 rounded-full text-sm font-semibold">
+              Our Work
+            </span>
+
+            <h2 className="mt-6 text-5xl font-bold text-slate-900">
+              Examples of the Work We Do
+            </h2>
+
+            <div className="w-20 h-1 bg-orange-500 rounded-full mx-auto mt-5"></div>
+
+            <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-500 leading-8">
+              These videos showcase the kind of IT, PR, and digital solutions we create for our clients.
+            </p>
+
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[
               {
                 src: "/Groceries Home Delivery Video.mp4",
@@ -310,29 +504,37 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ---------------- CTA Section ---------------- */}
-      <section className="relative py-16 sm:py-20 bg-[var(--color-lightgray)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
+      <section className="relative py-28 bg-[#FFF7F1] border-t border-gray-100 overflow-hidden">
+        {/* Background Glow */}
+        <div className="absolute -top-10 -left-10 w-80 h-80 bg-orange-100 rounded-full blur-[120px] opacity-30"></div>
+
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-[140px] opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
               whileInView={{ opacity: [0, 1], x: [-50, 0] }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
               className="text-center lg:text-left order-2 lg:order-1"
             >
-              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-navy)] mb-6 leading-tight">
+              <span className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-5 py-2 rounded-full text-sm font-semibold mb-6">
+                Lets Build Together
+              </span>
+              <h3 className="text-5xl lg:text-6xl font-bold leading-tight text-slate-900">
                 Ready to Get Started?
               </h3>
-              <p className="text-lg sm:text-xl text-gray-700 max-w-lg mx-auto lg:mx-0 mb-8">
+              <p className="mt-8 text-lg leading-8 text-gray-600 max-w-xl mx-auto lg:mx-0">
                 Helping businesses scale smarter, faster, and stronger.
               </p>
               <Link
                 href="/pricing"
-                className="bg-[var(--color-orange)] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-semibold inline-block text-base sm:text-lg hover:bg-[var(--color-orange-hover)] transition-colors"
+                className="inline-flex items-center gap-3 mt-10 bg-[var(--color-orange)] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 View Pricing Plans
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
 
@@ -340,22 +542,53 @@ export default function Home() {
               whileInView={{ opacity: [0, 1], scale: [0.9, 1] }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="flex justify-center order-1 lg:order-2"
+              className="relative flex justify-center lg:justify-end"
             >
-              <Image
-                width={600}
-                height={600}
-                src="/Ready to Get Started final.jpg"
-                alt="Get Started"
-                className="w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px] rounded-full object-cover shadow-2xl"
-              />
+              <div className="relative rounded-full bg-white p-5 shadow-2xl">
+                <Image
+                  width={600}
+                  height={600}
+                  src="/Ready to Get Started final.jpg"
+                  alt="Get Started"
+                  className="w-[420px] h-[420px] lg:w-[520px] lg:h-[520px] rounded-full object-cover"
+                />
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                viewport={{ once: true }}
+                className="absolute bottom-10 left-0 bg-white rounded-2xl shadow-xl px-6 py-5 border border-gray-100"
+              >
+                <div className="flex items-center gap-4">
+
+                  <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+
+                    <CheckCircle className="w-6 h-6 text-orange-500" />
+
+                  </div>
+
+                  <div>
+
+                    <h4 className="font-bold text-slate-900">
+                      Start Your Journey
+                    </h4>
+
+                    <p className="text-gray-500 text-sm">
+                      Lets build something amazing.
+                    </p>
+
+                  </div>
+
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ---------------- Footer Section ---------------- */}
-      <Footer />
-    </div>
+      < Footer />
+    </div >
   );
 }

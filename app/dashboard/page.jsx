@@ -26,9 +26,9 @@ import { firestore } from "./firebasecon";
 const fetchAdminCredentials = async () => {
   try {
     const querySnapshot = await getDocs(collection(firestore, "admin auth"));
-    
+
     let adminCredentials = null;
-    
+
     querySnapshot.forEach((doc) => {
       // Assuming there's only one document for admin
       const data = doc.data();
@@ -55,104 +55,104 @@ const AuthContext = createContext();
 
 // AuthProvider component to manage user state and roles
 export const AuthProvider = ({ children }) => {
-    
+
   const [currentUser, setCurrentUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [displayUserId, setDisplayUserId] = useState(null);
 
   const customLogin = async (inputUserId, password) => {
-  setLoading(true);
+    setLoading(true);
 
-  // Step 1: Try auto-login from localStorage
-  const localUserId = localStorage.getItem("userId");
-  const localPassword = localStorage.getItem("password");
+    // Step 1: Try auto-login from localStorage
+    const localUserId = localStorage.getItem("userId");
+    const localPassword = localStorage.getItem("password");
 
-  if (
-    inputUserId === localUserId &&
-    password === localPassword &&
-    localUserId &&
-    localPassword
-  ) {
-    // Check admin match
-    const ADMIN_AUTH_DATA = await fetchAdminCredentials();
     if (
-      ADMIN_AUTH_DATA &&
-      localUserId === ADMIN_AUTH_DATA.adminId &&
-      localPassword === ADMIN_AUTH_DATA.pass
+      inputUserId === localUserId &&
+      password === localPassword &&
+      localUserId &&
+      localPassword
     ) {
+      // Check admin match
+      const ADMIN_AUTH_DATA = await fetchAdminCredentials();
+      if (
+        ADMIN_AUTH_DATA &&
+        localUserId === ADMIN_AUTH_DATA.adminId &&
+        localPassword === ADMIN_AUTH_DATA.pass
+      ) {
+        setCurrentUser({ id: ADMIN_AUTH_DATA.adminId, role: "admin" });
+        setIsAdmin(true);
+        setDisplayUserId(ADMIN_AUTH_DATA.adminId);
+        return;
+      }
+
+      // Check sub-admin match
+      const q = query(
+        collection(firestore, "auth_users"),
+        where("userId", "==", localUserId),
+        where("password", "==", localPassword)
+      );
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        if (userData.role === "sub-admin" && userData.approved) {
+          setCurrentUser({ id: userData.userId, role: "sub-admin" });
+          setIsAdmin(false);
+          setDisplayUserId(userData.userId);
+          return;
+        }
+      }
+
+      // If local credentials invalid
+      throw new Error("Stored login credentials are invalid.");
+    }
+
+    // Step 2: Normal login flow
+    const ADMIN_AUTH_DATA = await fetchAdminCredentials();
+    if (!ADMIN_AUTH_DATA) return console.error("Failed to fetch admin data.");
+
+    if (inputUserId === ADMIN_AUTH_DATA.adminId && password === ADMIN_AUTH_DATA.pass) {
       setCurrentUser({ id: ADMIN_AUTH_DATA.adminId, role: "admin" });
       setIsAdmin(true);
       setDisplayUserId(ADMIN_AUTH_DATA.adminId);
+      localStorage.setItem("userId", inputUserId);
+      localStorage.setItem("password", password);
       return;
     }
 
-    // Check sub-admin match
-    const q = query(
-      collection(firestore, "auth_users"),
-      where("userId", "==", localUserId),
-      where("password", "==", localPassword)
-    );
-    const querySnapshot = await getDocs(q);
+    try {
+      const q = query(
+        collection(firestore, "auth_users"),
+        where("userId", "==", inputUserId),
+        where("password", "==", password)
+      );
+      const querySnapshot = await getDocs(q);
 
-    if (!querySnapshot.empty) {
-      const userData = querySnapshot.docs[0].data();
-      if (userData.role === "sub-admin" && userData.approved) {
-        setCurrentUser({ id: userData.userId, role: "sub-admin" });
-        setIsAdmin(false);
-        setDisplayUserId(userData.userId);
-        return;
-      }
-    }
-
-    // If local credentials invalid
-    throw new Error("Stored login credentials are invalid.");
-  }
-
-  // Step 2: Normal login flow
-  const ADMIN_AUTH_DATA = await fetchAdminCredentials();
-  if (!ADMIN_AUTH_DATA) return console.error("Failed to fetch admin data.");
-
-  if (inputUserId === ADMIN_AUTH_DATA.adminId && password === ADMIN_AUTH_DATA.pass) {
-    setCurrentUser({ id: ADMIN_AUTH_DATA.adminId, role: "admin" });
-    setIsAdmin(true);
-    setDisplayUserId(ADMIN_AUTH_DATA.adminId);
-    localStorage.setItem("userId", inputUserId);
-    localStorage.setItem("password", password);
-    return;
-  }
-
-  try {
-    const q = query(
-      collection(firestore, "auth_users"),
-      where("userId", "==", inputUserId),
-      where("password", "==", password)
-    );
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      const userData = querySnapshot.docs[0].data();
-      if (userData.role === "sub-admin" && userData.approved) {
-        setCurrentUser({ id: userData.userId, role: "sub-admin" });
-        setIsAdmin(false);
-        setDisplayUserId(userData.userId);
-        localStorage.setItem("userId", inputUserId);
-        localStorage.setItem("password", password);
-      } else if (!userData.approved) {
-        throw new Error("Your sub-admin account is awaiting admin approval.");
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        if (userData.role === "sub-admin" && userData.approved) {
+          setCurrentUser({ id: userData.userId, role: "sub-admin" });
+          setIsAdmin(false);
+          setDisplayUserId(userData.userId);
+          localStorage.setItem("userId", inputUserId);
+          localStorage.setItem("password", password);
+        } else if (!userData.approved) {
+          throw new Error("Your sub-admin account is awaiting admin approval.");
+        } else {
+          throw new Error("Unauthorized access. Please contact support.");
+        }
       } else {
-        throw new Error("Unauthorized access. Please contact support.");
+        throw new Error("Invalid User ID or Password.");
       }
-    } else {
-      throw new Error("Invalid User ID or Password.");
+    } catch (err) {
+      console.error("Login error:", err);
+      throw err;
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error("Login error:", err);
-    throw err;
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
 
   const customLogout = () => {
@@ -160,24 +160,24 @@ export const AuthProvider = ({ children }) => {
     setCurrentUser(null);
     setDisplayUserId(null);
     localStorage.removeItem("userId");
-  localStorage.removeItem("password");
+    localStorage.removeItem("password");
   };
 
-useEffect(() => {
-  const autoLogin = async () => {
-    const storedUserId = localStorage.getItem("userId");
-    const storedPassword = localStorage.getItem("password");
-    if (storedUserId && storedPassword) {
-      try {
-        await customLogin(storedUserId, storedPassword);
-      } catch (err) {
-        console.error("Auto-login failed", err);
+  useEffect(() => {
+    const autoLogin = async () => {
+      const storedUserId = localStorage.getItem("userId");
+      const storedPassword = localStorage.getItem("password");
+      if (storedUserId && storedPassword) {
+        try {
+          await customLogin(storedUserId, storedPassword);
+        } catch (err) {
+          console.error("Auto-login failed", err);
+        }
       }
-    }
-    setLoading(false);
-  };
-  autoLogin();
-}, []);
+      setLoading(false);
+    };
+    autoLogin();
+  }, []);
 
 
   const value = {
@@ -196,7 +196,7 @@ useEffect(() => {
   );
 };
 
- const useAuth = () => {
+const useAuth = () => {
   return useContext(AuthContext);
 };
 
@@ -434,7 +434,7 @@ const Dashboard = () => {
       }
 
       // Alphanumeric validation for User ID AND must start with "ad"
-      if ( !newUserId) {
+      if (!newUserId) {
         setAddError('User ID must be alphanumeric and start with "Sub admin-".');
         return;
       }
@@ -601,293 +601,293 @@ const Dashboard = () => {
   return (
     <div >
 
-   
-    <div className="p-8 bg-gray-900 min-h-screen text-gray-100 font-sans mt-20">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-extrabold text-blue-400 flex items-center">
-          
-          {isAdmin ? "Admin Dashboard" : "Ticket Dashboard"}
-        </h1>
-        <div className="flex items-center space-x-4">
-          <span className="text-gray-400 text-sm">User ID: {displayUserId}</span>
-          <button onClick={logout} className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h7V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H4V5z"/>
-            </svg>
-            <span>Logout</span>
-          </button>
-        </div>
-      </div>
 
-      {isAdmin && (
-        <div className="mb-8 border-b border-gray-700">
-          <nav className="flex space-x-4">
-            <button
-              onClick={() => setActiveTab('tickets')}
-              className={`px-4 py-2 rounded-t-lg font-medium ${activeTab === 'tickets' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-            >
-              Tickets
+      <div className="p-8 bg-gray-900 min-h-screen text-gray-100 font-sans mt-20">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-extrabold text-blue-400 flex items-center">
+
+            {isAdmin ? "Admin Dashboard" : "Ticket Dashboard"}
+          </h1>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-400 text-sm">User ID: {displayUserId}</span>
+            <button onClick={logout} className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h7V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H4V5z" />
+              </svg>
+              <span>Logout</span>
             </button>
-            
-            <button
-              onClick={() => setActiveTab('sub-admins')}
-              className={`px-4 py-2 rounded-t-lg font-medium ${activeTab === 'sub-admins' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-            >
-              Sub-Admins
-            </button>
-          </nav>
+          </div>
         </div>
-      )}
 
-      {/* Conditional Rendering based on activeTab */}
-      {activeTab === 'tickets' && (
-        <>
-          {/* Analytics Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
-              <h3 className="text-lg font-semibold text-blue-300">Total Tickets</h3>
-              <p className="text-3xl font-bold text-white mt-2">{totalTickets}</p>
-            </div>
-            <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
-              <h3 className="text-lg font-semibold text-blue-300">Tickets Today</h3>
-              <p className="text-3xl font-bold text-white mt-2">{ticketsToday}</p>
-            </div>
-            <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
-              <h3 className="text-lg font-semibold text-blue-300">Tickets This Week</h3>
-              <p className="text-3xl font-bold text-white mt-2">{ticketsThisWeek}</p>
-            </div>
-            <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
-              <h3 className="text-lg font-semibold text-blue-300">Tickets This Month</h3>
-              <p className="text-3xl font-bold text-white mt-2">{ticketsThisMonth}</p>
-            </div>
-          </div>
+        {isAdmin && (
+          <div className="mb-8 border-b border-gray-700">
+            <nav className="flex space-x-4">
+              <button
+                onClick={() => setActiveTab('tickets')}
+                className={`px-4 py-2 rounded-t-lg font-medium ${activeTab === 'tickets' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+              >
+                Tickets
+              </button>
 
-          {/* Status Counts */}
-          <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700 mb-8">
-            <h3 className="text-lg font-semibold text-blue-300 mb-4">Tickets by Status</h3>
-            <div className="flex flex-wrap gap-4">
-              {Object.entries(ticketCountsByStatus).map(([status, count]) => (
-                <div key={status} className="flex items-center space-x-2">
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColorClass(status)}`}>
-                    {status.toUpperCase()}: {count}
-                  </span>
-                </div>
-              ))}
-            </div>
+              <button
+                onClick={() => setActiveTab('sub-admins')}
+                className={`px-4 py-2 rounded-t-lg font-medium ${activeTab === 'sub-admins' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+              >
+                Sub-Admins
+              </button>
+            </nav>
           </div>
+        )}
 
-          <div className="mb-8">
-            <input
-              type="text"
-              placeholder="Search tickets by subject, name, email, phone, message, status..."
-              value={ticketSearchTerm}
-              onChange={(e) => setTicketSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700 text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          {filteredTickets.length > 0 ? (
-            <div className="overflow-x-auto rounded-lg shadow-2xl border border-gray-700">
-              <table className="min-w-full divide-y divide-gray-700 bg-gray-800">
-                <thead className="bg-gray-700">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      #
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Subject
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Name
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Email
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Message
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Created At
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Phone
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-700">
-                  {filteredTickets.map((ticket, index) => (
-                    <tr
-                      key={ticket.id}
-                      className={`${ticket.status && ticket.status !== 'open' ? getRowBackgroundColorClass(ticket.status) : (index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-700')}
+        {/* Conditional Rendering based on activeTab */}
+        {activeTab === 'tickets' && (
+          <>
+            {/* Analytics Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
+                <h3 className="text-lg font-semibold text-blue-300">Total Tickets</h3>
+                <p className="text-3xl font-bold text-white mt-2">{totalTickets}</p>
+              </div>
+              <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
+                <h3 className="text-lg font-semibold text-blue-300">Tickets Today</h3>
+                <p className="text-3xl font-bold text-white mt-2">{ticketsToday}</p>
+              </div>
+              <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
+                <h3 className="text-lg font-semibold text-blue-300">Tickets This Week</h3>
+                <p className="text-3xl font-bold text-white mt-2">{ticketsThisWeek}</p>
+              </div>
+              <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700">
+                <h3 className="text-lg font-semibold text-blue-300">Tickets This Month</h3>
+                <p className="text-3xl font-bold text-white mt-2">{ticketsThisMonth}</p>
+              </div>
+            </div>
+
+            {/* Status Counts */}
+            <div className="bg-gray-800 p-5 rounded-lg shadow-lg border border-gray-700 mb-8">
+              <h3 className="text-lg font-semibold text-blue-300 mb-4">Tickets by Status</h3>
+              <div className="flex flex-wrap gap-4">
+                {Object.entries(ticketCountsByStatus).map(([status, count]) => (
+                  <div key={status} className="flex items-center space-x-2">
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColorClass(status)}`}>
+                      {status.toUpperCase()}: {count}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <input
+                type="text"
+                placeholder="Search tickets by subject, name, email, phone, message, status..."
+                value={ticketSearchTerm}
+                onChange={(e) => setTicketSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 bg-gray-700 text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            {filteredTickets.length > 0 ? (
+              <div className="overflow-x-auto rounded-lg shadow-2xl border border-gray-700">
+                <table className="min-w-full divide-y divide-gray-700 bg-gray-800">
+                  <thead className="bg-gray-700">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        #
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Subject
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Name
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Email
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Message
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Created At
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Phone
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-700">
+                    {filteredTickets.map((ticket, index) => (
+                      <tr
+                        key={ticket.id}
+                        className={`${ticket.status && ticket.status !== 'open' ? getRowBackgroundColorClass(ticket.status) : (index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-700')}
                                  hover:bg-gray-600 cursor-pointer transition duration-150 ease-in-out`}
-                      onClick={() => openTicketModal(ticket)}
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-300">
-                        {ticket.subject}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                        {ticket.name}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                        {ticket.email}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-white max-w-xs truncate">
-                        {ticket.message}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                        {ticket.createdAt?.toDate
-                          ? formatRelative(ticket.createdAt.toDate(), new Date())
-                          : "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                        {ticket.phone || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                        {ticket.status ? (
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColorClass(ticket.status)}`}>
-                            {ticket.status.toUpperCase()}
-                          </span>
-                        ) : (
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColorClass(null)}`}>
-                            OPEN
-                          </span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              
+                        onClick={() => openTicketModal(ticket)}
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                          {index + 1}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-300">
+                          {ticket.subject}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          {ticket.name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          {ticket.email}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-white max-w-xs truncate">
+                          {ticket.message}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          {ticket.createdAt?.toDate
+                            ? formatRelative(ticket.createdAt.toDate(), new Date())
+                            : "N/A"}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          {ticket.phone || "N/A"}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          {ticket.status ? (
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColorClass(ticket.status)}`}>
+                              {ticket.status.toUpperCase()}
+                            </span>
+                          ) : (
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColorClass(null)}`}>
+                              OPEN
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+              </div>
+            ) : (
+              <p className="text-gray-400 text-center text-xl py-10">
+                No tickets found. Add some data to your Firestore!
+              </p>
+            )}
+
+          </>
+        )}
+
+
+        {isAdmin && activeTab === 'sub-admins' && (
+          <>
+            <div className="mb-8 flex justify-between items-center">
+              <input
+                type="text"
+                placeholder="Search sub-admins..."
+                value={subAdminSearchTerm}
+                onChange={(e) => setSubAdminSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 bg-gray-700 text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
+              />
+              <button
+                onClick={() => setShowAddSubAdminForm(true)}
+                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
+              >
+                Add New Sub-Admin
+              </button>
             </div>
-          ) : (
-            <p className="text-gray-400 text-center text-xl py-10">
-              No tickets found. Add some data to your Firestore!
-            </p>
-          )}
-          
-        </>
-      )}
 
+            {showAddSubAdminForm && (
+              <AddSubAdminForm
+                onAdd={() => setShowAddSubAdminForm(false)}
+                onClose={() => setShowAddSubAdminForm(false)}
+              />
+            )}
 
-      {isAdmin && activeTab === 'sub-admins' && (
-        <>
-          <div className="mb-8 flex justify-between items-center">
-            <input
-              type="text"
-              placeholder="Search sub-admins..."
-              value={subAdminSearchTerm}
-              onChange={(e) => setSubAdminSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700 text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
-            />
-            <button
-              onClick={() => setShowAddSubAdminForm(true)}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
-            >
-              Add New Sub-Admin
-            </button>
-          </div>
+            {editSubAdmin && (
+              <EditSubAdminModal
+                subAdmin={editSubAdmin}
+                onClose={() => setEditSubAdmin(null)}
+                onSave={handleEditSubAdminSave}
+              />
+            )}
 
-          {showAddSubAdminForm && (
-            <AddSubAdminForm
-              onAdd={() => setShowAddSubAdminForm(false)}
-              onClose={() => setShowAddSubAdminForm(false)}
-            />
-          )}
-
-          {editSubAdmin && (
-            <EditSubAdminModal
-              subAdmin={editSubAdmin}
-              onClose={() => setEditSubAdmin(null)}
-              onSave={handleEditSubAdminSave}
-            />
-          )}
-
-          {filteredSubAdmins.length > 0 ? (
-            <div className="overflow-x-auto rounded-lg shadow-2xl border border-gray-700">
-              <table className="min-w-full divide-y divide-gray-700 bg-gray-800">
-                <thead className="bg-gray-700">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      User ID
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Password (Insecure)
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-700">
-                  {filteredSubAdmins.map((admin, index) => (
-                    <tr
-                      key={admin.id}
-                      className={index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-700'}
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-300">
-                        {admin.userId}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                        {admin.password} {/* INSECURE: Displaying plain password */}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${admin.approved ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                          {admin.approved ? 'APPROVED' : 'PENDING'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        {!admin.approved && (
+            {filteredSubAdmins.length > 0 ? (
+              <div className="overflow-x-auto rounded-lg shadow-2xl border border-gray-700">
+                <table className="min-w-full divide-y divide-gray-700 bg-gray-800">
+                  <thead className="bg-gray-700">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        User ID
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Password (Insecure)
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-700">
+                    {filteredSubAdmins.map((admin, index) => (
+                      <tr
+                        key={admin.id}
+                        className={index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-700'}
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-300">
+                          {admin.userId}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                          {admin.password} {/* INSECURE: Displaying plain password */}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${admin.approved ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                            {admin.approved ? 'APPROVED' : 'PENDING'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          {!admin.approved && (
+                            <button
+                              onClick={() => approveSubAdmin(admin.id)}
+                              className="text-green-400 hover:text-green-600 mr-3 transition duration-150"
+                            >
+                              Approve
+                            </button>
+                          )}
                           <button
-                            onClick={() => approveSubAdmin(admin.id)}
-                            className="text-green-400 hover:text-green-600 mr-3 transition duration-150"
+                            onClick={() => setEditSubAdmin(admin)}
+                            className="text-blue-400 hover:text-blue-600 mr-3 transition duration-150"
                           >
-                            Approve
+                            Edit
                           </button>
-                        )}
-                        <button
-                          onClick={() => setEditSubAdmin(admin)}
-                          className="text-blue-400 hover:text-blue-600 mr-3 transition duration-150"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => removeSubAdmin(admin.id)}
-                          className="text-red-400 hover:text-red-600 transition duration-150"
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p className="text-gray-400 text-center text-xl py-10">
-              No sub-admin accounts found.
-            </p>
-          )}
-        </>
-      )}
+                          <button
+                            onClick={() => removeSubAdmin(admin.id)}
+                            className="text-red-400 hover:text-red-600 transition duration-150"
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="text-gray-400 text-center text-xl py-10">
+                No sub-admin accounts found.
+              </p>
+            )}
+          </>
+        )}
 
-      {/* Ticket Detail Modal */}
-      {selectedTicket && (
-        <TicketDetailModal
-          ticket={selectedTicket}
-          onClose={closeTicketModal}
-          onUpdateStatus={updateTicketStatus}
-        />
-      )}
+        {/* Ticket Detail Modal */}
+        {selectedTicket && (
+          <TicketDetailModal
+            ticket={selectedTicket}
+            onClose={closeTicketModal}
+            onUpdateStatus={updateTicketStatus}
+          />
+        )}
+      </div>
     </div>
-     </div>
   );
 };
 
@@ -955,9 +955,9 @@ const TicketDetailModal = ({ ticket, onClose, onUpdateStatus }) => {
                 onClick={() => onUpdateStatus(ticket.id, status)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition duration-200
                             ${ticket.status === status
-                                ? getStatusColorClass(status).replace('bg-', 'bg-').replace('-100', '-600') + ' text-white shadow-md' // Active state
-                                : 'bg-gray-700 hover:bg-gray-600 text-gray-200' // Inactive state
-                            }`}
+                    ? getStatusColorClass(status).replace('bg-', 'bg-').replace('-100', '-600') + ' text-white shadow-md' // Active state
+                    : 'bg-gray-700 hover:bg-gray-600 text-gray-200' // Inactive state
+                  }`}
               >
                 {status.toUpperCase()}
               </button>
@@ -974,7 +974,7 @@ const TicketDetailModal = ({ ticket, onClose, onUpdateStatus }) => {
           </button>
         </div>
       </div>
-     
+
     </div>
   );
 };
@@ -997,11 +997,11 @@ const AuthComponent = () => {
   };
 
   return (
- 
 
 
 
-<div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
         {/* Left Panel (Form) */}
         <motion.div
@@ -1012,56 +1012,54 @@ const AuthComponent = () => {
           transition={{ duration: 0.4 }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center p-6 sm:p-10"
         >
-         
-            <>
-              <h2 className="text-2xl font-bold mb-6 color-black" style={{color: "black"}}>Sign In</h2>
-              <input
-  type="text"
-  placeholder="User ID"
-  value={userIdInput}
-  onChange={(e) => setUserIdInput(e.target.value)}
-  required
-  style={{ color: "black" }}
-  className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
-/>
 
-<input
-  type="password"
-  placeholder="Password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  required
-  style={{ color: "black" }}
-  className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
-/>
-              <button className="w-full bg-[#e03e00] text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition" onClick={handleSubmit}>
-                Sign In
-              </button>
-            </>
-          
+          <>
+            <h2 className="text-2xl font-bold mb-6 color-black" style={{ color: "black" }}>Sign In</h2>
+            <input
+              type="text"
+              placeholder="User ID"
+              value={userIdInput}
+              onChange={(e) => setUserIdInput(e.target.value)}
+              required
+              className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#e03e00]"
+            />
+            <button className="w-full bg-[#e03e00] text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition" onClick={handleSubmit}>
+              Sign In
+            </button>
+          </>
+
         </motion.div>
 
         {/* Right Panel (Overlay / Switcher) */}
         <motion.div
-          key={"signin-right" }
+          key={"signin-right"}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.4 }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center text-center bg-gradient-to-r from-red-500 to-pink-500 text-white p-6 sm:p-10"
         >
-          
-            <>
-              <h2 className="text-3xl font-bold mb-4">Welcome Back!</h2>
-              <p className="mb-6">To keep connected, please sign in again</p>
-              <button
-                
-                className="bg-white text-red-500 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition" onClick={handleSubmit}
-              >
-                Sign In
-              </button>
-            </>
-        
+
+          <>
+            <h2 className="text-3xl font-bold mb-4">Welcome Back!</h2>
+            <p className="mb-6">To keep connected, please sign in again</p>
+            <button
+
+              className="bg-white text-red-500 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition" onClick={handleSubmit}
+            >
+              Sign In
+            </button>
+          </>
+
         </motion.div>
       </div>
     </div>
