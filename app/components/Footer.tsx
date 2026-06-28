@@ -176,9 +176,9 @@ export default function Footer() {
                 >Portfolio</Link>
               </li>
               <li>
-                <Link href="/pricing"
+                <Link href="/plans"
                   className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
-                >Pricing</Link>
+                >Plans</Link>
               </li>
             </ul>
           </div>

@@ -1,15 +1,15 @@
 // app/pricing/page.tsx
-import { Check, Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import { Check } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/Footer"; 
 
-export default function Pricing() {
+export default function Planse() {
   const plans = [
     {
       name: "All-In-One Growth Package ",
-      price: "₹35,000",
-      period: "month",
-      yearlyPrice: "₹3,60,000/year (Save ₹60,000)",
+     
+     
+      
       description: "Everything your brand needs — in one powerful package",
       features: [
         "Website Maintenance – speed, bug fixes, security checks, backups, reports",
@@ -91,8 +91,7 @@ export default function Pricing() {
               <br className="hidden sm:block" />
               We offer a comprehensive monthly service that keeps your website
               optimized, your SEO strong, your app visible, and your social
-              media buzzing — all for just{" "}
-              <span className="font-bold text-[#ff4500]">₹35,000/month or ₹3,60,000/year.</span>
+              media buzzing.
             </p>
           </div>
         </div>
@@ -172,19 +171,7 @@ export default function Pricing() {
                   </h3>
                   <p className="text-gray-500 mb-4 text-sm sm:text-base">{plan.description}</p>
 
-                  <div className="flex flex-col items-center">
-                    <span
-                      className={`text-3xl sm:text-4xl md:text-5xl font-bold ${
-                        plan.popular ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {plan.price}
-                    </span>
-                    <span className="text-gray-500 text-sm sm:text-base">/{plan.period}</span>
-                    <span className="text-[#ff4500] mt-2 font-medium text-sm sm:text-base text-center">
-                      {plan.yearlyPrice}
-                    </span>
-                  </div>
+                 
                 </div>
 
                 <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">

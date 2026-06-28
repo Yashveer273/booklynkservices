@@ -577,10 +577,10 @@ export default function Home() {
                 Helping businesses scale smarter, faster, and stronger.
               </p>
               <Link
-                href="/pricing"
+                href="/plans"
                 className="inline-flex items-center gap-3 mt-10 bg-[var(--color-orange)] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
-                View Pricing Plans
+                View Plans
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
