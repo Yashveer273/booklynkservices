@@ -68,7 +68,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 leading-8 max-w-sm mt-6">
-              Built by professionals, powered by innovation.
+              BookLynk Services is owned and operated by EZ Startup Futurio.
             </p>
 
             <div className="w-24 h-1 bg-orange-500 rounded-full mt-6 mb-8"></div>
