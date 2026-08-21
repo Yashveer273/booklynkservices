@@ -211,8 +211,7 @@ export default function Footer() {
             </h4>
             <div className="space-y-5">
               <p className="text-gray-400 leading-7">hello@booklynkservices.com</p>
-              <p className="text-gray-400 leading-7">+91 9650316607</p>
-              <p className="text-gray-400 leading-8 whitespace-pre-line">
+               <p className="text-gray-400 leading-8 whitespace-pre-line">
                 {`624, Tower-1
 Assotech Business Cresterra
 Sector 135

@@ -111,11 +111,7 @@ export default function ContactPage() {
               <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               <span>booklynkservices@gmail.com</span>
             </div>
-            <div className="flex items-center space-x-3">
-              <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span>+91 9650316607</span>
-            </div>
-
+            
             {/* Social Icons */}
             <div className="flex flex-wrap gap-4 mt-8">
               {socialLinks.map((social, index) => (
