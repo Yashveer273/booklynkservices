@@ -20,6 +20,7 @@ import {
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Footer from "./components/Footer";
+import ServicesSection from "./ServicesSection";
 import { FaChartLine, FaCoins } from "react-icons/fa";
 
 // ------------------- Stats Section -------------------
@@ -240,6 +241,7 @@ export default function Home() {
   return (
     <div className="pt-10">
       {/* ---------------- Hero Section ---------------- */}
+     
       <section className="relative bg-gradient-to-b from-[#fffaf7] via-[#fffaf7] to-[#F8FAFC] overflow-hidden">
 
         {/* Background Shapes */}
@@ -365,7 +367,7 @@ export default function Home() {
         </div>
         <div className="absolute bottom-0 left-0 w-full h-px bg-gray-200"></div>
       </section>
-
+<ServicesSection/>
       {/* ---------------- Stats Section ---------------- */}
 
       <section
